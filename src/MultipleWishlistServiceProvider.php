@@ -2,14 +2,16 @@
 
 namespace Rapidez\MultipleWishlist;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class MultipleWishlistServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        Route::middleware('api')->prefix('api')->group(function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'rapidez');
 
