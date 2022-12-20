@@ -23,6 +23,9 @@
             check: {
                 type: String,
             },
+            checkfail: {
+                type: String,
+            },
             cache: {
                 type: String,
             },
@@ -91,8 +94,8 @@
                     }
 
                     if (this.check) {
-                        if (!eval('response.data.' + this.check)) {
-                            Turbolinks.visit(this.redirect)
+                        if (!eval('response.' + this.check)) {
+                            Turbolinks.visit(this.checkfail)
                             return
                         }
                     }

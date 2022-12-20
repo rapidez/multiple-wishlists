@@ -5,7 +5,7 @@
 @section('robots', 'NOINDEX,NOFOLLOW')
 
 @section('account-content')
-    <api-request method="get" immediate destination="wishlists/{{ $id }}" v-slot="{ data }">
+    <api-request method="get" immediate destination="wishlists/{{ $id }}" v-slot="{ data }" checkfail="/account/wishlists/" check="data[0].title">
         <div v-if="data">
             <x-rapidez::input name="title" v-model="data[0].title" required/>
             <x-rapidez::textarea name="description" v-model="data[0].description"/>
