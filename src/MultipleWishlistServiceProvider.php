@@ -12,8 +12,13 @@ class MultipleWishlistServiceProvider extends ServiceProvider
         Route::middleware('api')->prefix('api')->group(function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'rapidez');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/rapidez')
         ], 'views');

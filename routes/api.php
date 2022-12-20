@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Rapidez\MultipleWishlist\Middleware\AuthMagento;
 use Illuminate\Support\Facades\Route;
 use Rapidez\MultipleWishlist\Controllers\WishlistController;
