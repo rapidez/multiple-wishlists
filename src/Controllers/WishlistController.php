@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 
@@ -19,7 +20,12 @@ class WishlistController extends Controller
 
     public function index(Request $request): Collection
     {
-        return Wishlist::where('customer_id', $request->userId)->get();
+        // There has to be a way to do this part more succinctly
+        return Wishlist::select(['jb_wishlist.*', DB::raw('COUNT(jb_wishlist_item.product_id) AS item_count')])
+            ->where('customer_id', $request->userId)
+            ->leftJoin('jb_wishlist_item', 'jb_wishlist_item.wishlist_id', '=', 'jb_wishlist.id')
+            ->groupBy('jb_wishlist.id')
+            ->get();
     }
 
     public function show(Request $request, $id): mixed

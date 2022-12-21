@@ -11,8 +11,9 @@
                 <div class="text-gray-900 rounded-md odd:bg-gray-200 flex flex-row w-full" v-for="(wishlist, index) in data">
                     <a class="flex gap-2 px-2 py-4 w-full" :href="'/account/wishlists/'+wishlist.id">
                         <div class="px-4 w-fit">@{{ index + 1 }}</div>
-                        <div class="w-1/3">@{{ wishlist.title }}</div>
-                        <div class="w-2/3">@{{ wishlist.description }}</div>
+                        <div class="w-1/4 font-semibold">@{{ wishlist.title }}</div>
+                        <div class="px-4 w-40">@{{ wishlist.item_count }} items</div>
+                        <div class="w-3/4">@{{ wishlist.description }}</div>
                     </a>
                     <a class="bg-primary text-white font-semibold px-4 py-2 m-2 rounded-md flex justify-center items-center" v-if="wishlist" :href="'/account/wishlists/edit/'+wishlist.id" class="w-4">Edit</a>
                 </div>
