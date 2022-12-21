@@ -10,6 +10,8 @@ If you haven't published the Rapidez views yet, publish them with:
 php artisan vendor:publish --provider="Rapidez\MultipleWishlist\MultipleWishlistServiceProvider" --tag=views
 ```
 
+You also have to add a new button to the Rapidez account menu (Which is in `rapidez/account/resources/views/partials/menu.blade.php`)
+
 ## API endpoints
 The API uses the Laravel apiResource endpoints as shown in the table below. Note that every request except for `GET /wishlists/shared/{token}` requires a bearer token header for authorization. This is the magento oauth token of the customer.
 

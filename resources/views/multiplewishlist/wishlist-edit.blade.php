@@ -9,6 +9,7 @@
         <div v-if="data">
             <x-rapidez::input name="title" v-model="data[0].title" required/>
             <x-rapidez::textarea name="description" v-model="data[0].description"/>
+            <x-rapidez::checkbox name="shared" v-model="data[0].shared">Enable public wishlist sharing link</x-rapidez::checkbox>
             <div class="flex gap-2">
                 <api-request method="patch" destination="wishlists/{{ $id }}" redirect="/account/wishlists/{{ $id }}" :variables="{title: data[0].title, description: data[0].description, share: data[0].shared}" v-slot="{ data, runQuery, running }">
                     <button
