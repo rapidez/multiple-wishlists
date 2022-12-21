@@ -25,10 +25,13 @@
     </listing>
     <div class="flex flex-col">
         <template v-if="$root.custom.wishlistLoaded">
+            <div class="self-end p-4">
+                <x-rapidez::button type="primary">Add all items to cart</x-rapidez::button>
+            </div>
             <div
                 v-for="(item, index) in $root.custom.currentWishlistData[1]"
                 :key="item.id"
-                class="rounded-md odd:bg-gray-200 flex items-center justify-between p-4"
+                class="rounded-md even:bg-gray-200 flex items-center justify-between p-4"
             >
                 <template v-if="item">
                     <a :href="item.item.url" class="flex gap-2 w-full">
@@ -52,5 +55,11 @@
                 </template>
             </div>
         </template>
+        <div v-else-if="$root.custom.currentWishlistData[1].length == 0" class="text-gray-400 text-sm">
+            This wishlist is empty.
+        </div>
+        <div v-else class="flex justify-center text-gray-400 text-sm">
+            Loading...
+        </div>
     </div>
 </div>

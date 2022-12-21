@@ -16,25 +16,20 @@
                         <div class="w-full overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-900">@{{ wishlist.description }}</div>
                     </a>
                     <div class="flex m-2 gap-2 h-10 self-center justify-end items-center w-1/5">
-                        <a :href="'/wishlists/shared/' + wishlist.sharing_token" v-if="wishlist.shared" class="text-primary">(shared)</a>
-                        <a class="bg-primary text-white hover:bg-white hover:text-primary transition border border-primary font-semibold px-4 py-2 rounded-md flex justify-center items-center" v-if="wishlist" :href="'/account/wishlists/edit/'+wishlist.id">Edit</a>
+                        <a :href="'/wishlists/shared/' + wishlist.sharing_token" v-if="wishlist.shared" class="text-primary hover:underline">(shared)</a>
+                        <x-rapidez::button v-if="wishlist" ::href="'/account/wishlists/edit/'+wishlist.id">Edit</x-rapidez::button>
                         <api-request method="delete" :destination="'wishlists/' + wishlist.id" v-slot="{ runQuery, running }" :callback="runQuery">
-                            <button class="bg-red-500 text-white hover:bg-white hover:text-red-500 transition border border-red-500 font-semibold px-4 py-2 rounded-md flex justify-center items-center" v-if="wishlist" @click="runQuery">
+                            <x-rapidez::button variant="outline" v-if="wishlist" @click="runQuery">
                                 @{{ running ? '...' : ' Delete' }}
-                            </button>
+                            </x-rapidez::button>
                         </api-request>
                     </div>
                 </div>
 
                 <api-request method="post" destination="wishlists" v-slot="{ data, runQuery, running }" :callback="runQuery" :variables="{ title: 'New wishlist' }">
-                    <button
-                        @click="runQuery"
-                        :disabled="running"
-                        class="self-start bg-gray-500 text-white hover:bg-white hover:text-gray-500 transition border border-gray-500 px-4 py-2 mt-4 rounded-full cursor-pointer"
-                        :class="running ? 'cursor-not-allowed' : ''"
-                    >
+                    <x-rapidez::button variant="outline" class="self-start mt-2" @click="runQuery" v-bind:disabled="running">
                         @{{ running ? '...' : 'Create new wishlist' }}
-                    </button>
+                    </x-rapidez::button>
                 </api-request>
             </div>
         </api-request>
