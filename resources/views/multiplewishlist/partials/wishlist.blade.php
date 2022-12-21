@@ -1,6 +1,14 @@
-<div v-if="data" :set="$root.custom.currentWishlistData = data">
-    <p class="font-bold">@{{ data[0].title }}</p>
-    <p>@{{ data[0].description }}</p>
+@props(['editable' => true])
+<div v-if="data" :set="$root.custom.currentWishlistData = data" class="mt-5">
+    <div class="flex justify-center">
+        <p class="font-bold ml-4">@{{ data[0].title }}</p>
+        @if($editable)
+            <a class="text-primary underline ml-4" href="/account/wishlist/edit/{{ $id }}">Edit</a>
+        @endif
+    </div>
+    <div class="p-4 rounded-md bg-gray-100 mt-4 mb-6">
+        <p>@{{ data[0].description }}</p>
+    </div>
     <listing v-cloak>
         <div slot-scope="{ loaded, filters, sortOptions, reactiveFilters }" class="hidden">
             <reactive-base :app="config.es_prefix + '_products_' + config.store" :url="config.es_url" v-if="loaded">
@@ -30,9 +38,11 @@
                 </a>
                 <div class="flex gap-3 pr-10">
                     @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item.item'])
-                    <api-request method="delete" :destination="'wishlists/item/' + item.id" :variables="{ wishlistId: {{ $id }} }" v-slot="{ runQuery }" :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], index)">
-                        <button class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md" @click="runQuery">X</button>
-                    </api-request>
+                    @if($editable)
+                        <api-request method="delete" :destination="'wishlists/item/' + item.id" :variables="{ wishlistId: {{ $id }} }" v-slot="{ runQuery }" :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], index)">
+                            <button class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md" @click="runQuery">X</button>
+                        </api-request>
+                    @endif
                 </div>
             </template>
         </div>

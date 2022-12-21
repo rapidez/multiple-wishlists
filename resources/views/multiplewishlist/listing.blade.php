@@ -15,7 +15,12 @@
                         <div class="px-4 w-40">@{{ wishlist.item_count }} items</div>
                         <div class="w-3/4">@{{ wishlist.description }}</div>
                     </a>
-                    <a class="bg-primary text-white font-semibold px-4 py-2 m-2 rounded-md flex justify-center items-center" v-if="wishlist" :href="'/account/wishlists/edit/'+wishlist.id" class="w-4">Edit</a>
+                    <a class="bg-primary text-white font-semibold px-4 py-2 m-2 rounded-md flex justify-center items-center" v-if="wishlist" :href="'/account/wishlists/edit/'+wishlist.id">Edit</a>
+                    <api-request method="delete" :destination="'wishlists/' + wishlist.id" v-slot="{ runQuery, running }" :callback="runQuery">
+                        <button class="bg-red-500 text-white font-semibold px-4 py-2 m-2 rounded-md flex justify-center items-center" v-if="wishlist" @click="runQuery">
+                            @{{ running ? '...' : ' Delete' }}
+                        </button>
+                    </api-request>
                 </div>
 
                 <api-request method="post" destination="wishlists" v-slot="{ data, runQuery, running }" :callback="runQuery" :variables="{ title: 'New wishlist' }">
