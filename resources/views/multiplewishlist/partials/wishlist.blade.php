@@ -3,7 +3,7 @@
     <div class="flex justify-center">
         <p class="font-bold ml-4">@{{ data[0].title }}</p>
         @if($editable)
-            <a class="text-primary underline ml-4" href="/account/wishlist/edit/{{ $id }}">Edit</a>
+            <a class="text-primary underline ml-4" href="/account/wishlists/edit/{{ $id }}">Edit</a>
         @endif
     </div>
     <div class="p-4 rounded-md bg-gray-100 mt-4 mb-6">

@@ -27,7 +27,7 @@
                     <button
                         @click="runQuery"
                         :disabled="running"
-                        class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 transition border border-gray-500 px-4 py-2 mt-4 rounded-md cursor-pointer"
+                        class="self-start bg-gray-500 text-white hover:bg-white hover:text-gray-500 transition border border-gray-500 px-4 py-2 mt-4 rounded-full cursor-pointer"
                         :class="running ? 'cursor-not-allowed' : ''"
                     >
                         @{{ running ? '...' : 'Create new wishlist' }}
