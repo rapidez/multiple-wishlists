@@ -1,5 +1,5 @@
-@props(['min_qty' => '1', 'product' => 'product'])
-<add-to-cart v-if="{{ $product }}.in_stock" v-cloak v-bind:product="{{ $product }}" :default-qty="parseInt({{ $min_qty }})">
+@props(['qty' => '1', 'product' => 'product'])
+<add-to-cart v-if="{{ $product }}.in_stock" v-cloak v-bind:product="{{ $product }}" :default-qty="parseInt({{ $qty }})">
     <div {{ $attributes->merge(['class' => 'flex h-14 w-14 overflow-hidden']) }}
         slot-scope="{ qty, add, adding, added }"
     >

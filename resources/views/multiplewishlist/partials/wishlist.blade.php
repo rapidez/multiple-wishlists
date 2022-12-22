@@ -23,10 +23,7 @@
                     <div slot="render" slot-scope="{ data, dataItem }" class="flex flex-col">
                         <div class="self-end p-4">
                             <template v-if="data.length > 1">
-                                <x-rapidez::button
-                                    type="primary"
-                                    @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())"
-                                >
+                                <x-rapidez::button type="primary" @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())">
                                     Add all items to cart
                                 </x-rapidez::button>
                             </template>
@@ -39,13 +36,58 @@
                                         <img :src="'/storage/resizes/200/catalog/product' + item.thumbnail" class="object-contain rounded-md h-40" :alt="item.name" loading="lazy" />
                                     </picture>
                                     <div class="w-full flex flex-col">
-                                        <span class="font-bold text-20">@{{ item.name }}</span>
+                                        <span class="font-bold text-20">@{{ item.name }} x @{{ dataItem.qty }}</span>
                                         <span>@{{ item.price | price }}</span>
+                                        <span class="text-gray-700 ml-2">@{{ dataItem.description }}</span>
                                     </div>
                                 </a>
+                                @if($editable)
+                                    <div class="flex flex-col w-full px-5">
+                                        <template v-if="$root.custom.itemEdit == item.sku">
+                                            <x-rapidez::input
+                                                class="text-right"
+                                                type="number"
+                                                name="quantity"
+                                                v-model="$root.custom.currentItem.qty"
+                                                v-bind:dusk="'qty-'+index"
+                                                ::min="item.min_sale_qty > item.qty_increments ? item.min_sale_qty : item.qty_increments"
+                                                ::step="item.qty_increments"
+                                            />
+                                            <x-rapidez::textarea name="description" v-model="$root.custom.currentItem.description"/>
+                                            <api-request
+                                                method="patch"
+                                                :destination="'wishlists/item/' + $root.custom.currentItem.id"
+                                                :variables="{
+                                                    wishlistId: {{ $id }},
+                                                    description: $root.custom.currentItem.description,
+                                                    qty: $root.custom.currentItem.qty
+                                                }"
+                                                :callback="() => $root.custom.itemEdit=-1"
+                                                v-slot="{ runQuery }"
+                                            >
+                                                <x-rapidez::button
+                                                    variant="outline"
+                                                    class="w-40 text-center self-center"
+                                                    @click="runQuery"
+                                                >
+                                                    Save item
+                                                </x-rapidez::button>
+                                            </api-request>
+                                        </template>
+                                        <template v-else>
+                                            <x-rapidez::button
+                                                variant="outline"
+                                                class="w-40 text-center self-center"
+                                                @click="$root.custom.itemEdit=item.sku;$root.custom.currentItem=$root.custom.currentWishlistData[1].find(e => e.sku == item.sku)"
+                                            >
+                                                Edit item
+                                            </x-rapidez::button>
+                                        </template>
+                                    </div>
+                                @endif
                                 <div class="flex gap-3 pr-10">
                                     <template v-if="dataItem.type_id == 'simple'">
-                                        @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item'])
+                                        @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'dataItem.qty'])
                                     </template>
                                     @if($editable)
                                         <api-request 
