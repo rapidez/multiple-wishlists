@@ -21,15 +21,17 @@
                     <div slot="renderResultStats"></div>
                     <div slot="renderNoResults">This wishlist is empty.</div>
                     <div slot="render" slot-scope="{ data, dataItem }" class="flex flex-col">
-                        <div class="self-end p-4" v-if="data.length > 1">
-                            <x-rapidez::button
-                                type="primary"
-                                @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())"
-                            >
-                                Add all items to cart
-                            </x-rapidez::button>
+                        <div class="self-end p-4">
+                            <template v-if="data.length > 1">
+                                <x-rapidez::button
+                                    type="primary"
+                                    @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())"
+                                >
+                                    Add all items to cart
+                                </x-rapidez::button>
+                            </template>
                         </div>
-                        <div v-for="item in data" class="rounded-md even:bg-gray-200 flex items-center justify-between p-4" :set="dataItem=$root.custom.currentWishlistData[1].find(e => e.sku == item.sku)">
+                        <div v-for="(item, index) in data" class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4" :set="dataItem=$root.custom.currentWishlistData[1].find(e => e.sku == item.sku)">
                             <template v-if="dataItem">
                                 <a :href="item.url" class="flex gap-2 w-full">
                                     <picture v-if="item.thumbnail">
@@ -46,10 +48,21 @@
                                         @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item'])
                                     </template>
                                     @if($editable)
-                                        <api-request method="delete" :destination="'wishlists/item/' + dataItem.id" :variables="{ wishlistId: {{ $id }} }" v-slot="{ runQuery }" :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], index)">
+                                        <api-request 
+                                            method="delete"
+                                            :destination="'wishlists/item/' + dataItem.id"
+                                            :variables="{ wishlistId: {{ $id }} }"
+                                            v-slot="{ runQuery }"
+                                            :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], $root.custom.currentWishlistData[1].findIndex(e => e.sku == item.sku))"
+                                        >
                                             <button class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md" @click="runQuery">X</button>
                                         </api-request>
                                     @endif
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="flex w-full justify-center items-center p-5 italic text-gray-600">
+                                    Item deleted
                                 </div>
                             </template>
                         </div>

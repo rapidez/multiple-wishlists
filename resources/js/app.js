@@ -4,5 +4,4 @@ Vue.component('api-request', apirequest)
 
 document.addEventListener('turbolinks:load', (event) => {
     Vue.set(window.app.custom, 'currentWishlistData', [])
-    Vue.set(window.app.custom, 'wishlistLoaded', false)
 })
