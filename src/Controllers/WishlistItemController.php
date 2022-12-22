@@ -26,7 +26,7 @@ class WishlistItemController extends Controller
             'qty' => 'required|integer'
         ]);
 
-        $wl = Wishlist::where('id', $request->wishlistId)->where('customer_id', $request->userId)->first();
+        $wl = Wishlist::with('items')->where('id', $request->wishlistId)->where('customer_id', $request->userId)->first();
         if (!$wl) {
             return 'Wishlist not found';
         }
@@ -34,6 +34,13 @@ class WishlistItemController extends Controller
         $product = Product::selectAttributes(['sku'])->where((new Product())->getTable().'.entity_id', $request->productId)->first();
         if (!$product) {
             return 'Product not found';
+        }
+
+        $existing = $wl->items()->firstWhere('product_id', $request->productId);
+        if ($existing) {
+            $existing->qty += $request->qty;
+            $existing->save();
+            return $existing;
         }
 
         $item = new WishlistItem();
@@ -49,7 +56,7 @@ class WishlistItemController extends Controller
     {
         $request->validate([
             'wishlistId' => 'required|integer',
-            'description' => 'required|max:255',
+            'description' => 'max:255',
             'qty' => 'required|integer'
         ]);
 
@@ -63,7 +70,9 @@ class WishlistItemController extends Controller
             return 'Item not found';
         }
 
-        $item->description = $request->description;
+        if ($request->description) {
+            $item->description = $request->description;
+        }
         $item->qty = $request->qty;
         $item->save();
 

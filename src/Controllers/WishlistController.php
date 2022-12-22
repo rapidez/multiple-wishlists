@@ -34,7 +34,7 @@ class WishlistController extends Controller
         if (!$wl) {
             return 'Wishlist not found';
         }
-        
+
         return [$wl, $wl->items()->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'jb_wishlist_item.product_id')->get()];
     }
 
@@ -44,7 +44,7 @@ class WishlistController extends Controller
         if (!$wl) {
             return 'Wishlist not found';
         }
-        
+
         return [$wl, $wl->items()->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'jb_wishlist_item.product_id')->get()];
     }
 
@@ -72,7 +72,7 @@ class WishlistController extends Controller
         }
         $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required|max:65535',
+            'description' => 'max:65535',
             'share' => 'required|boolean'
         ]);
 
@@ -82,7 +82,9 @@ class WishlistController extends Controller
         }
 
         $wl->title = $request->title;
-        $wl->description = $request->description;
+        if ($request->description) {
+            $wl->description = $request->description;
+        }
         $wl->shared = $request->share;
         $wl->save();
 
