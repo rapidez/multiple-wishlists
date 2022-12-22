@@ -10,14 +10,9 @@ class Wishlist extends Model
     protected $table = 'jb_wishlist';
     protected $primaryKey = 'id';
 
-    protected $fillable = [
-        'title',
-        'description'
-    ];
-
     public function items()
     {
-        return $this->hasMany(WishlistItem::class);
+        return $this->hasMany(JbWishlistItem::class);
     }
 
     public function store()

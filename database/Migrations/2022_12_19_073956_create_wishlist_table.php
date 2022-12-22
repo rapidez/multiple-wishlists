@@ -28,12 +28,10 @@ return new class extends Migration
 
         Schema::create('jb_wishlist_item', function(Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('wishlist_item_id');
             $table->unsignedInteger('wishlist_id');
-            $table->unsignedInteger('product_id');
+            $table->foreign('wishlist_item_id')->references('wishlist_item_id')->on('wishlist_item')->cascadeOnDelete();
             $table->foreign('wishlist_id')->references('id')->on('jb_wishlist')->cascadeOnDelete();
-            $table->foreign('product_id')->references('entity_id')->on('catalog_product_entity');
-            $table->string('description')->nullable();
-            $table->unsignedInteger('qty');
             $table->timestamps();
         });
     }
@@ -45,7 +43,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jb_wishlist');
         Schema::dropIfExists('jb_wishlist_item');
+        Schema::dropIfExists('jb_wishlist');
     }
 };

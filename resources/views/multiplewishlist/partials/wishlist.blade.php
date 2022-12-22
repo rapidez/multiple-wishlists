@@ -36,7 +36,7 @@
                                         <img :src="'/storage/resizes/200/catalog/product' + item.thumbnail" class="object-contain rounded-md h-40" :alt="item.name" loading="lazy" />
                                     </picture>
                                     <div class="w-full flex flex-col">
-                                        <span class="font-bold text-20">@{{ item.name }} x @{{ dataItem.qty }}</span>
+                                        <span class="font-bold text-20">@{{ item.name }} x @{{ Math.round(dataItem.qty) }}</span>
                                         <span>@{{ item.price | price }}</span>
                                         <span class="text-gray-700 ml-2">@{{ dataItem.description }}</span>
                                     </div>
@@ -56,7 +56,7 @@
                                             <x-rapidez::textarea name="description" v-model="$root.custom.currentItem.description"/>
                                             <api-request
                                                 method="patch"
-                                                :destination="'wishlists/item/' + $root.custom.currentItem.id"
+                                                :destination="'wishlists/item/' + $root.custom.currentItem.wishlist_item_id"
                                                 :variables="{
                                                     wishlistId: {{ $id }},
                                                     description: $root.custom.currentItem.description,
@@ -78,7 +78,11 @@
                                             <x-rapidez::button
                                                 variant="outline"
                                                 class="w-40 text-center self-center"
-                                                @click="$root.custom.itemEdit=item.sku;$root.custom.currentItem=$root.custom.currentWishlistData[1].find(e => e.sku == item.sku)"
+                                                @click="
+                                                    $root.custom.itemEdit=item.sku;
+                                                    $root.custom.currentItem=$root.custom.currentWishlistData[1].find(e => e.sku == item.sku);
+                                                    $root.custom.currentItem.qty = Math.round($root.custom.currentItem.qty);
+                                                "
                                             >
                                                 Edit item
                                             </x-rapidez::button>
@@ -92,7 +96,7 @@
                                     @if($editable)
                                         <api-request 
                                             method="delete"
-                                            :destination="'wishlists/item/' + dataItem.id"
+                                            :destination="'wishlists/item/' + dataItem.wishlist_item_id"
                                             :variables="{ wishlistId: {{ $id }} }"
                                             v-slot="{ runQuery }"
                                             :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], $root.custom.currentWishlistData[1].findIndex(e => e.sku == item.sku))"

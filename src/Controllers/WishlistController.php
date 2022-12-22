@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Rapidez\Core\Models\Product;
+use Rapidez\MultipleWishlist\Models\MagentoWishlist;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 
 class WishlistController extends Controller
@@ -21,7 +22,7 @@ class WishlistController extends Controller
     public function index(Request $request): Collection
     {
         // There has to be a way to do this part more succinctly
-        return Wishlist::select(['jb_wishlist.*', DB::raw('COUNT(jb_wishlist_item.product_id) AS item_count')])
+        return Wishlist::select(['jb_wishlist.*', DB::raw('COUNT(jb_wishlist_item.id) AS item_count')])
             ->where('customer_id', $request->userId)
             ->leftJoin('jb_wishlist_item', 'jb_wishlist_item.wishlist_id', '=', 'jb_wishlist.id')
             ->groupBy('jb_wishlist.id')
@@ -35,7 +36,7 @@ class WishlistController extends Controller
             return 'Wishlist not found';
         }
 
-        return [$wl, $wl->items()->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'jb_wishlist_item.product_id')->get()];
+        return [$wl, $wl->items()->join('wishlist_item', 'wishlist_item.wishlist_item_id', '=', 'jb_wishlist_item.wishlist_item_id')->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'wishlist_item.product_id')->get()];
     }
 
     public function shared($token): mixed
@@ -45,7 +46,7 @@ class WishlistController extends Controller
             return 'Wishlist not found';
         }
 
-        return [$wl, $wl->items()->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'jb_wishlist_item.product_id')->get()];
+        return [$wl, $wl->items()->join('wishlist_item', 'wishlist_item.wishlist_item_id', '=', 'jb_wishlist_item.wishlist_item_id')->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'wishlist_item.product_id')->get()];
     }
 
     public function store(Request $request): mixed
@@ -61,6 +62,16 @@ class WishlistController extends Controller
         $wishlist->shared = false;
         $wishlist->sharing_token = md5(uniqid("wl"));
         $wishlist->save();
+
+        if (!MagentoWishlist::where('customer_id', $request->userId)->first()) {
+            $mwl = new MagentoWishlist();
+            $mwl->timestamps = false;
+            $mwl->customer_id = $request->userId;
+            $mwl->shared = false;
+            $mwl->sharing_code = md5(uniqid("mwl"));
+            $mwl->updated_at = now();
+            $mwl->save();
+        }
 
         return $wishlist;
     }
