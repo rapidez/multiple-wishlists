@@ -26,7 +26,12 @@
     <div class="flex flex-col">
         <template v-if="$root.custom.wishlistLoaded">
             <div class="self-end p-4">
-                <x-rapidez::button type="primary">Add all items to cart</x-rapidez::button>
+                <x-rapidez::button
+                    type="primary"
+                    @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())"
+                >
+                    Add all items to cart
+                </x-rapidez::button>
             </div>
             <div
                 v-for="(item, index) in $root.custom.currentWishlistData[1]"
@@ -45,7 +50,9 @@
                         </div>
                     </a>
                     <div class="flex gap-3 pr-10">
-                        @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item.item'])
+                        <template v-if="item.type_id == 'simple'">
+                            @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item.item'])
+                        </template>
                         @if($editable)
                             <api-request method="delete" :destination="'wishlists/item/' + item.id" :variables="{ wishlistId: {{ $id }} }" v-slot="{ runQuery }" :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], index)">
                                 <button class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md" @click="runQuery">X</button>
