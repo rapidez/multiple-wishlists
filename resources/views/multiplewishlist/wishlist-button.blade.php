@@ -8,9 +8,9 @@
             <api-request method="get" immediate destination="wishlists/all" v-slot="{ runQuery, data, contains }">
                 <div class="flex flex-col gap-2">
                     <div v-for="item in data" :key="item.id" :set="contains = item.items.findIndex(e => e.product_id == {{ $product->id }})" class="flex gap-2 w-full items-center justify-end">
-                        <div class="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                        <a class="overflow-ellipsis overflow-hidden whitespace-nowrap" :href="'/account/wishlists/' + item.id">
                             @{{ item.title }}
-                        </div>
+                        </a>
                         <div class="border border-primary rounded-md w-fit inline-block self-start" :class="contains > -1 ? 'text-white bg-primary' : 'text-primary'">
                             <api-request
                                 :method="contains > -1 ? 'delete' : 'post'"
@@ -30,6 +30,11 @@
                             </api-request>
                         </div>
                     </div>
+                    <api-request method="post" destination="wishlists" v-slot="{ data, runQuery, running }" :callback="runQuery" :variables="{ title: 'New wishlist' }">
+                        <x-rapidez::button variant="outline" @click="runQuery" v-bind:disabled="running">
+                            @{{ running ? '...' : '+' }}
+                        </x-rapidez::button>
+                    </api-request>
                 </div>
             </api-request>
         </div>

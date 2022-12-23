@@ -4,7 +4,7 @@
         <div class="flex">
             <p class="font-bold ml-4">@{{ data[0].title }}</p>
             @if($editable)
-                <a class="text-primary underline ml-4" href="/account/wishlists/edit/{{ $id }}">Edit</a>
+                <a class="text-primary underline mx-4" href="/account/wishlists/edit/{{ $id }}">Edit</a>
             @endif
         </div>
         <div v-if="data[0].shared" class="text-sm text-gray-600">
