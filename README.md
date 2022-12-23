@@ -10,14 +10,15 @@ If you haven't published the Rapidez views yet, publish them with:
 php artisan vendor:publish --provider="Rapidez\MultipleWishlist\MultipleWishlistServiceProvider" --tag=views
 ```
 
-You also have to add a new button to the Rapidez account menu (Which is in `rapidez/account/resources/views/partials/menu.blade.php`)
+You also should probably add a new "wishlists" button to the Rapidez account menu, if you use it in your project (which is in `rapidez/account/resources/views/partials/menu.blade.php`)
 
 ## API endpoints
-The API uses the Laravel apiResource endpoints as shown in the table below. Note that every request except for `GET /wishlists/shared/{token}` requires a bearer token header for authorization. This is the magento oauth token of the customer.
+The API uses mostly Laravel apiResource endpoints. All of the exposed endpoints can be found below. Note that every request except for `GET /wishlists/shared/{token}` requires a bearer token header for authorization. This is the magento oauth token of the customer.
 
 | Endpoint | Parameters | Description |
 | --- | --- | --- |
 | GET /wishlists/ | None | Gets a list of all the customer's wishlists |
+| GET /wishlists/all | None | Gets a list of all the customer's wishlists + all of the items |
 | GET /wishlists/{id} | None | Gets a specific wishlist |
 | POST /wishlists/ | <ul><li>title</li></ul> | Creates a new wishlist with the given title |
 | PATCH /wishlists/{id} | <ul><li>title(str, max 255)</li><li>description(str, max 65535)</li><li>share(bool)</li></ul> | Updates the data of a wishlist |
