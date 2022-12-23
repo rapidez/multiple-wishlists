@@ -44,7 +44,7 @@ class WishlistItemController extends Controller
             return 'Magento wishlist not found';
         }
 
-        $existing = $wl->items()->join('wishlist_item', 'wishlist_item.wishlist_item_id', '=', 'jb_wishlist_item.wishlist_item_id')->firstWhere('wishlist_item.product_id', $request->productId);
+        $existing = $wl->items()->firstWhere('wishlist_item.product_id', $request->productId);
         if ($existing) {
             $existing->qty += $request->qty;
             $existing->save();

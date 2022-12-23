@@ -12,7 +12,7 @@ class Wishlist extends Model
 
     public function items()
     {
-        return $this->hasMany(JbWishlistItem::class);
+        return $this->hasManyThrough(WishlistItem::class, JbWishlistItem::class, 'wishlist_id', 'wishlist_item_id', 'id', 'wishlist_item_id');
     }
 
     public function store()

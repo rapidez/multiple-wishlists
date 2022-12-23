@@ -36,7 +36,7 @@ class WishlistController extends Controller
             return 'Wishlist not found';
         }
 
-        return [$wl, $wl->items()->join('wishlist_item', 'wishlist_item.wishlist_item_id', '=', 'jb_wishlist_item.wishlist_item_id')->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'wishlist_item.product_id')->get()];
+        return [$wl, $wl->items()->get()];
     }
 
     public function shared($token): mixed
@@ -46,7 +46,7 @@ class WishlistController extends Controller
             return 'Wishlist not found';
         }
 
-        return [$wl, $wl->items()->join('wishlist_item', 'wishlist_item.wishlist_item_id', '=', 'jb_wishlist_item.wishlist_item_id')->join('catalog_product_entity', 'catalog_product_entity.entity_id', '=', 'wishlist_item.product_id')->get()];
+        return [$wl, $wl->items()->get()];
     }
 
     public function store(Request $request): mixed
@@ -111,5 +111,10 @@ class WishlistController extends Controller
 
         $wl->delete();
         return true;
+    }
+
+    public function allWithItems(Request $request): mixed
+    {
+        return Wishlist::with('items')->where('customer_id', $request->userId)->get();
     }
 }
