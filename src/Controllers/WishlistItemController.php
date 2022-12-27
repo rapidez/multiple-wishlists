@@ -59,16 +59,16 @@ class WishlistItemController extends Controller
         }])->findOrFail($id);
 
         $item->update($validated);
-        
+
         return $item;
     }
 
     public function destroy(Request $request, $id)
     {
-        $item = WishlistItem::with('magentoWishlist')->findOrFail($id);
-        if ($item->magentoWishlist->customer_id != $request->customer_id) {
-            abort(404);
-        }
+        $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
+            $query->isCustomer($request->customer_id);
+        }])->findOrFail($id);
+        
         $item->delete();
 
         return $item;
