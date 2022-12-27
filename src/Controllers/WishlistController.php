@@ -21,12 +21,12 @@ class WishlistController extends Controller
 
     public function index(Request $request): Collection
     {
-        return RapidezWishlist::withCount('items')->isCustomer($request->customerId)->get();
+        return RapidezWishlist::withCount('items')->isCustomer($request->customer_id)->get();
     }
 
     public function show(Request $request, $id): mixed
     {
-        return RapidezWishlist::with('items')->isCustomer($request->customerId)->findOrFail($id);
+        return RapidezWishlist::with('items')->isCustomer($request->customer_id)->findOrFail($id);
     }
 
     public function shared($token): mixed
@@ -36,60 +36,44 @@ class WishlistController extends Controller
 
     public function store(Request $request): mixed
     {
-        $request->validate([
-            'title' => 'required|max:255'
+        $validated = $request->validate([
+            'customer_id' => 'required|integer',
+            'title' => 'required|max:255',
+            'shared' => 'boolean'
         ]);
 
-        $wishlist = new RapidezWishlist();
-        $wishlist->title = $request->title;
-        $wishlist->customer_id = $request->customerId;
-        $wishlist->store_id = config('rapidez.store');
-        $wishlist->shared = false;
-        $wishlist->sharing_token = md5(uniqid("wl"));
-        $wishlist->save();
+        $rapidezWishlist = new RapidezWishlist($validated);
+        $rapidezWishlist->save();
 
-        if (!Wishlist::where('customer_id', $request->customerId)->first()) {
-            $m_wishlist = new Wishlist();
-            $m_wishlist->timestamps = false;
-            $m_wishlist->customer_id = $request->customerId;
-            $m_wishlist->shared = false;
-            $m_wishlist->sharing_code = md5(uniqid("mwl"));
-            $m_wishlist->updated_at = now();
-            $m_wishlist->save();
+        if (!Wishlist::where('customer_id', $request->customer_id)->first()) {
+            $magentoWishlist = new Wishlist($validated);
+            $magentoWishlist->save();
         }
 
-        return $wishlist;
+        return $rapidezWishlist;
     }
 
     public function update(Request $request, $id): mixed
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'max:65535',
-            'share' => 'required|boolean'
+            'shared' => 'required|boolean'
         ]);
 
-        $wishlist = RapidezWishlist::where('id', $id)->isCustomer($request->customerId)->firstOrFail();
+        $rapidezWishlist = RapidezWishlist::isCustomer($request->customer_id)->findOrFail($id);
+        $rapidezWishlist->update($validated);
 
-        $wishlist->title = $request->title;
-        if ($request->description) {
-            $wishlist->description = $request->description;
-        }
-        $wishlist->shared = $request->share;
-        $wishlist->save();
-
-        return $wishlist;
+        return $rapidezWishlist;
     }
 
-    public function destroy(Request $request, $id): mixed
+    public function destroy(Request $request, $id)
     {
-        $wishlist = RapidezWishlist::where('id', $id)->isCustomer($request->customerId)->firstOrFail();
-        $wishlist->delete();
-        return true;
+        return RapidezWishlist::isCustomer($request->customer_id)->findOrFail($id)->delete();
     }
 
     public function allWithItems(Request $request): mixed
     {
-        return RapidezWishlist::with('items')->isCustomer($request->customerId)->get();
+        return RapidezWishlist::with('items')->isCustomer($request->customer_id)->get();
     }
 }

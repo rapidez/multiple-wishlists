@@ -58,7 +58,7 @@
                                                 method="patch"
                                                 :destination="'wishlists/item/' + $root.custom.currentItem.wishlist_item_id"
                                                 :variables="{
-                                                    wishlistId: {{ $id }},
+                                                    wishlist_id: {{ $id }},
                                                     description: $root.custom.currentItem.description,
                                                     qty: $root.custom.currentItem.qty
                                                 }"
@@ -97,7 +97,7 @@
                                         <api-request 
                                             method="delete"
                                             :destination="'wishlists/item/' + dataItem.wishlist_item_id"
-                                            :variables="{ wishlistId: {{ $id }} }"
+                                            :variables="{ wishlist_id: {{ $id }} }"
                                             v-slot="{ runQuery }"
                                             :callback="() => window.Vue.delete($root.custom.currentWishlistData.items, $root.custom.currentWishlistData.items.findIndex(e => e.product_id == item.id))"
                                         >

@@ -10,7 +10,17 @@ class Wishlist extends Model
     protected $table = 'wishlist';
     protected $primaryKey = 'wishlist_id';
 
-    const CREATED_AT = null;
+    protected $fillable = ['customer_id'];
+
+    public const CREATED_AT = null;
+
+    protected static function booted()
+    {
+        static::created(function ($wishlist) {
+            $wishlist->sharing_code = md5(uniqid('mwl'));
+            $wishlist->save();
+        });
+    }
 
     public function items()
     {

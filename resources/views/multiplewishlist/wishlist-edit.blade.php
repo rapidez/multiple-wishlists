@@ -11,7 +11,7 @@
             <x-rapidez::textarea name="description" v-model="data.description"/>
             <x-rapidez::checkbox name="shared" v-model="data.shared">Enable public wishlist sharing link</x-rapidez::checkbox>
             <div class="flex gap-2">
-                <api-request method="patch" destination="wishlists/{{ $id }}" redirect="/account/wishlists/{{ $id }}" :variables="{title: data.title, description: data.description, share: data.shared}" v-slot="{ data, runQuery, running }">
+                <api-request method="patch" destination="wishlists/{{ $id }}" redirect="/account/wishlists/{{ $id }}" :variables="{title: data.title, description: data.description, shared: data.shared}" v-slot="{ data, runQuery, running }">
                     <button
                         @click="runQuery"
                         :disabled="running"

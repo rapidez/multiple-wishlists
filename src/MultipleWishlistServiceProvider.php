@@ -25,9 +25,7 @@ class MultipleWishlistServiceProvider extends ServiceProvider
 
     public function bootRoutes(): static
     {
-        Route::middleware('api')->prefix('api')->group(function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        });
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         return $this;

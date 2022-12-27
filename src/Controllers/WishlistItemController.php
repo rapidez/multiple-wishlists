@@ -23,24 +23,23 @@ class WishlistItemController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'wishlistId' => 'required|integer',
-            'productId' => 'required|integer',
+            'wishlist_id' => 'required|integer',
+            'product_id' => 'required|integer',
             'qty' => 'required|integer|min:1'
         ]);
-        
-        $wishlist = RapidezWishlist::with('rapidezItems')->isCustomer($request->customerId)->findOrFail($request->wishlistId);
-        $product = Product::selectAttributes(['id'])->findOrFail($request->productId);
-        $m_wishlist = Wishlist::with('items')->isCustomer($request->customerId)->firstOrFail();
 
-        $existing = $wishlist->items()->firstWhere('wishlist_item.product_id', $request->productId);
+        $rapidezWishlist = RapidezWishlist::with('rapidezItems')->isCustomer($request->customer_id)->findOrFail($request->wishlist_id);
+        $product = Product::selectAttributes(['id'])->findOrFail($request->product_id);
+        $magentoWishlist = Wishlist::with('items')->isCustomer($request->customer_id)->firstOrFail();
+
+        $existing = $rapidezWishlist->items()->firstWhere('wishlist_item.product_id', $request->product_id);
         if ($existing) {
-            $existing->qty += $request->qty;
-            $existing->save();
+            $existing->update($validated);
             return $existing;
         }
 
-        $item = $m_wishlist->items()->create($validated);
-        $wishlist->rapidezItems()->create([
+        $item = $magentoWishlist->items()->create($validated);
+        $rapidezWishlist->rapidezItems()->create([
             'wishlist_item_id' => $item->wishlist_item_id,
             'wishlist_id' => $request->wishlist_id
         ]);
@@ -55,20 +54,23 @@ class WishlistItemController extends Controller
             'qty' => 'required|integer|min:1'
         ]);
 
-        $item = WishlistItem::with('magentoWishlist')->findOrFail($id);
-        if($item->magentoWishlist->customer_id != $request->customerId) {
-            abort(404);
-        }
-        // why doesn't `$item->update($validated)` change the description field here? very strange behavior
-        return WishlistItem::where('wishlist_item_id', $id)->update($validated);
+        $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
+            $query->isCustomer($request->customer_id);
+        }])->findOrFail($id);
+
+        $item->update($validated);
+        
+        return $item;
     }
 
     public function destroy(Request $request, $id)
     {
         $item = WishlistItem::with('magentoWishlist')->findOrFail($id);
-        if($item->magentoWishlist->customer_id != $request->customerId) {
+        if ($item->magentoWishlist->customer_id != $request->customer_id) {
             abort(404);
         }
         $item->delete();
+
+        return $item;
     }
 }

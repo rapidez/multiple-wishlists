@@ -10,6 +10,17 @@ class RapidezWishlist extends Model
 {
     protected $table = 'rapidez_wishlist';
 
+    protected $fillable = ['title', 'shared', 'customer_id'];
+    
+    protected static function booted()
+    {
+        static::created(function ($wishlist) {
+            $wishlist->sharing_token = md5(uniqid('wl'));
+            $wishlist->store_id = config('rapidez.store');
+            $wishlist->save();
+        });
+    }
+
     public function items()
     {
         return $this->hasManyThrough(

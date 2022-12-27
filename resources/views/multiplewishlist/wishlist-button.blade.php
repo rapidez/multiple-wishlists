@@ -11,11 +11,11 @@
                         <a class="overflow-ellipsis overflow-hidden whitespace-nowrap" :href="'/account/wishlists/' + item.id">
                             @{{ item.title }}
                         </a>
-                        <div class="border border-primary rounded-md w-fit inline-block self-start" :class="contains > -1 ? 'text-white bg-primary' : 'text-primary'">
+                        <div class="border border-primary rounded-md w-fit inline-block self-start transition" :class="contains > -1 ? 'text-white bg-primary' : 'text-primary'">
                             <api-request
                                 :method="contains > -1 ? 'delete' : 'post'"
                                 :destination="'wishlists/item' + (contains > -1 ? ('/' + item.items[contains].wishlist_item_id) : '')"
-                                :variables="{wishlistId: item.id, productId: {{ $product->id }}, qty: 1}"
+                                :variables="{wishlist_id: item.id, product_id: {{ $product->id }}, qty: 1}"
                                 v-slot="{ runQuery, data }"
                                 :callback="(response) => {
                                     var id = item.items.findIndex(e => e.product_id == {{ $product->id }});
