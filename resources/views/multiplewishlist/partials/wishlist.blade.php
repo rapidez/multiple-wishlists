@@ -2,22 +2,22 @@
 <div v-if="data" :set="$root.custom.currentWishlistData = data" class="mt-5">
     <div class="flex justify-between">
         <div class="flex">
-            <p class="font-bold ml-4">@{{ data[0].title }}</p>
+            <p class="font-bold ml-4">@{{ data.title }}</p>
             @if($editable)
                 <a class="text-primary underline mx-4" href="/account/wishlists/edit/{{ $id }}">Edit</a>
             @endif
         </div>
-        <div v-if="data[0].shared" class="text-sm text-gray-600">
-            Sharing link: <a :href="'/wishlists/shared/' + data[0].sharing_token" class="text-primary underline">/wishlists/shared/@{{data[0].sharing_token}}</a>
+        <div v-if="data.shared" class="text-sm text-gray-600">
+            Sharing link: <a :href="'/wishlists/shared/' + data.sharing_token" class="text-primary underline">/wishlists/shared/@{{data.sharing_token}}</a>
         </div>
     </div>
-    <div v-if="data[0].description" class="p-4 rounded-md bg-gray-100 mt-4 mb-6 whitespace-pre-line">
-        <p>@{{ data[0].description }}</p>
+    <div v-if="data.description" class="p-4 rounded-md bg-gray-100 mt-4 mb-6 whitespace-pre-line">
+        <p>@{{ data.description }}</p>
     </div>
     <listing v-cloak>
         <div slot-scope="{ loaded }">
             <reactive-base :app="config.es_prefix + '_products_' + config.store" :url="config.es_url" v-if="loaded">
-                <reactive-list id="products" component-id="products" data-field="id" :default-query="function() { return { query: { terms: { 'id': data[1].map(e => e.product_id) } } } }">
+                <reactive-list id="products" component-id="products" data-field="id" :default-query="function() { return { query: { terms: { 'id': data.items.map(e => e.product_id) } } } }">
                     <div slot="renderResultStats"></div>
                     <div slot="renderNoResults">This wishlist is empty.</div>
                     <div slot="render" slot-scope="{ data, dataItem }" class="flex flex-col">
@@ -28,7 +28,7 @@
                                 </x-rapidez::button>
                             </template>
                         </div>
-                        <div v-for="(item, index) in data" class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4" :set="dataItem=$root.custom.currentWishlistData[1].find(e => e.product_id == item.id)">
+                        <div v-for="(item, index) in data" class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4" :set="dataItem=$root.custom.currentWishlistData.items.find(e => e.product_id == item.id)">
                             <template v-if="dataItem">
                                 <a :href="item.url" class="flex gap-2 w-full">
                                     <picture v-if="item.thumbnail">
@@ -80,7 +80,7 @@
                                                 class="w-40 text-center self-center"
                                                 @click="
                                                     $root.custom.itemEdit=item.id;
-                                                    $root.custom.currentItem=$root.custom.currentWishlistData[1].find(e => e.product_id == item.id);
+                                                    $root.custom.currentItem=$root.custom.currentWishlistData.items.find(e => e.product_id == item.id);
                                                     $root.custom.currentItem.qty = Math.round($root.custom.currentItem.qty);
                                                 "
                                             >
@@ -99,7 +99,7 @@
                                             :destination="'wishlists/item/' + dataItem.wishlist_item_id"
                                             :variables="{ wishlistId: {{ $id }} }"
                                             v-slot="{ runQuery }"
-                                            :callback="() => window.Vue.delete($root.custom.currentWishlistData[1], $root.custom.currentWishlistData[1].findIndex(e => e.product_id == item.id))"
+                                            :callback="() => window.Vue.delete($root.custom.currentWishlistData.items, $root.custom.currentWishlistData.items.findIndex(e => e.product_id == item.id))"
                                         >
                                             <button class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md" @click="runQuery">X</button>
                                         </api-request>

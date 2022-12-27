@@ -9,13 +9,23 @@ class WishlistItem extends Model
     protected $table = 'wishlist_item';
     protected $primaryKey = 'wishlist_item_id';
 
+    protected $fillable = ['product_id', 'qty', 'added_at'];
+
+    const CREATED_AT = 'added_at';
+    const UPDATED_AT = null;
+
     public function magentoWishlist()
     {
-        return $this->belongsTo(MagentoWishlist::class);
+        return $this->belongsTo(Wishlist::class, 'wishlist_id');
     }
 
-    public function wishlist()
+    public function rapidezWishlist()
     {
-        return $this->hasOneThrough(Wishlist::class, JbWishlistItem::class);
+        return $this->hasOneThrough(RapidezWishlist::class, RapidezWishlistItem::class);
+    }
+
+    public function rapidezItem()
+    {
+        return $this->hasOne(RapidezWishlistItem::class, 'wishlist_item_id');
     }
 }

@@ -5,13 +5,13 @@
 @section('robots', 'NOINDEX,NOFOLLOW')
 
 @section('account-content')
-    <api-request method="get" immediate destination="wishlists/{{ $id }}" v-slot="{ data }" checkfail="/account/wishlists/" check="data[0].title">
+    <api-request method="get" immediate destination="wishlists/{{ $id }}" v-slot="{ data }" checkfail="/account/wishlists/" check="data.title">
         <div v-if="data">
-            <x-rapidez::input name="title" v-model="data[0].title" required/>
-            <x-rapidez::textarea name="description" v-model="data[0].description"/>
-            <x-rapidez::checkbox name="shared" v-model="data[0].shared">Enable public wishlist sharing link</x-rapidez::checkbox>
+            <x-rapidez::input name="title" v-model="data.title" required/>
+            <x-rapidez::textarea name="description" v-model="data.description"/>
+            <x-rapidez::checkbox name="shared" v-model="data.shared">Enable public wishlist sharing link</x-rapidez::checkbox>
             <div class="flex gap-2">
-                <api-request method="patch" destination="wishlists/{{ $id }}" redirect="/account/wishlists/{{ $id }}" :variables="{title: data[0].title, description: data[0].description, share: data[0].shared}" v-slot="{ data, runQuery, running }">
+                <api-request method="patch" destination="wishlists/{{ $id }}" redirect="/account/wishlists/{{ $id }}" :variables="{title: data.title, description: data.description, share: data.shared}" v-slot="{ data, runQuery, running }">
                     <button
                         @click="runQuery"
                         :disabled="running"

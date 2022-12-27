@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jb_wishlist', function(Blueprint $table) {
+        Schema::create('rapidez_wishlist', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedSmallInteger('store_id');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('jb_wishlist_item', function(Blueprint $table) {
+        Schema::create('rapidez_wishlist_item', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('wishlist_item_id');
             $table->unsignedInteger('wishlist_id');
@@ -43,7 +43,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jb_wishlist_item');
-        Schema::dropIfExists('jb_wishlist');
+        Schema::dropIfExists('rapidez_wishlist_item');
+        Schema::dropIfExists('rapidez_wishlist');
     }
 };

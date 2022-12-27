@@ -19,9 +19,7 @@ class AuthMagento
     {
         // Filter out bad requests immediately
         $token = $request->bearerToken();
-        if (!$token || $request->userId) {
-            abort(403);
-        }
+        abort_if(!$token || $request->customerId, 403);
 
         // Query the database to see if the token exists
         $authId = DB::table('oauth_token')
@@ -30,12 +28,10 @@ class AuthMagento
                 ->value('customer_id');
 
         // Abort on no result or otherwise strange invalid output
-        if (!$authId) {
-            abort(403);
-        }
+        abort_if(!$authId, 403);
 
         // Send the user's customer ID through
-        $request->userId = $authId;
+        $request->customerId = $authId;
 
         return $next($request);
     }

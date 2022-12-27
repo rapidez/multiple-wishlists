@@ -12,7 +12,7 @@
                     <a class="flex gap-2 px-2 py-4 w-4/5 text-gray-500" :href="'/account/wishlists/'+wishlist.id">
                         <div class="px-4 w-fit">@{{ index + 1 }}</div>
                         <div class="w-1/4 overflow-ellipsis overflow-hidden whitespace-nowrap font-semibold text-gray-600">@{{ wishlist.title }}</div>
-                        <div class="px-4 w-40">@{{ wishlist.item_count }} items</div>
+                        <div class="px-4 w-40">@{{ wishlist.items_count }} items</div>
                         <div class="w-full overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-900">@{{ wishlist.description }}</div>
                     </a>
                     <div class="flex m-2 gap-2 h-10 self-center justify-end items-center w-1/5">
