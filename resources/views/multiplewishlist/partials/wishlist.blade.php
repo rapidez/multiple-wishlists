@@ -78,11 +78,7 @@
                                             <x-rapidez::button
                                                 variant="outline"
                                                 class="w-40 text-center self-center"
-                                                @click="
-                                                    $root.custom.itemEdit=item.id;
-                                                    $root.custom.currentItem=$root.custom.currentWishlistData.items.find(e => e.product_id == item.id);
-                                                    $root.custom.currentItem.qty = Math.round($root.custom.currentItem.qty);
-                                                "
+                                                v-on:click="$root.custom.itemEdit=item.id;$root.custom.currentItem=$root.custom.currentWishlistData.items.find(e => e.product_id == item.id)"
                                             >
                                                 Edit item
                                             </x-rapidez::button>

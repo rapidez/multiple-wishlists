@@ -11,8 +11,12 @@ class WishlistItem extends Model
 
     protected $fillable = ['product_id', 'qty', 'description', 'added_at'];
 
-    const CREATED_AT = 'added_at';
-    const UPDATED_AT = null;
+    protected $casts = [
+        'qty' => 'integer'
+    ];
+
+    public const CREATED_AT = 'added_at';
+    public const UPDATED_AT = null;
 
     protected static function booted()
     {
