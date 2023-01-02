@@ -10,6 +10,11 @@ If you haven't published the Rapidez views yet, publish them with:
 php artisan vendor:publish --provider="Rapidez\MultipleWishlist\MultipleWishlistServiceProvider" --tag=views
 ```
 
+Then add the js dependency at the top of your app.js:
+```
+require('Vendor/rapidez/multiple-wishlists/resources/js/app.js');
+```
+
 You also should probably add a new "wishlists" button to the Rapidez account menu, if you use it in your project (which is in `rapidez/account/resources/views/partials/menu.blade.php`)
 
 ## API endpoints
