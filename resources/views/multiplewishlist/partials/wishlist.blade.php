@@ -21,7 +21,7 @@
                 <reactive-list id="products" component-id="products" data-field="id" :default-query="function() { return { query: { terms: { 'id': wishlist.items.map(e => e.product_id) } } } }">
                     <div slot="renderResultStats"></div>
                     <div slot="renderNoResults">This wishlist is empty.</div>
-                    <div slot="render" slot-scope="{ data, dataItem }" class="flex flex-col">
+                    <div slot="render" slot-scope="{ data }" class="flex flex-col">
                         <div class="self-end p-4">
                             <template v-if="data.length > 1">
                                 <x-rapidez::button type="primary" @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())">
