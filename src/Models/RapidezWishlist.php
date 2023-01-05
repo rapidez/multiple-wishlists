@@ -10,7 +10,7 @@ class RapidezWishlist extends Model
 {
     protected $table = 'rapidez_wishlist';
 
-    protected $fillable = ['title', 'shared', 'customer_id'];
+    protected $fillable = ['title', 'shared', 'description', 'customer_id'];
     
     protected static function booted()
     {
