@@ -6,7 +6,7 @@
 
 @section('account-content')
     <a class="text-primary underline" href="/account/wishlists/">Back to listing</a>
-    <api-request method="get" immediate destination="wishlists/{{ $id }}" v-slot="{ data, runQuery }" checkfail="/account/wishlists/" check="data.title">
+    <wishlist :wishlist-id="{{ $id }}" v-slot="{ wishlist, contains, editItem, removeItem }">
         @include('rapidez::multiplewishlist.partials.wishlist')
-    </api-request>
+    </wishlist>
 @endsection

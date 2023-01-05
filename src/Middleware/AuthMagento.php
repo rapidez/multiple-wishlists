@@ -31,7 +31,7 @@ class AuthMagento
         abort_if(!$authId, 403);
 
         // Send the user's customer ID through
-        $request->request->add(['customer_id' => $authId]);
+        $request->customer_id = $authId;
 
         return $next($request);
     }

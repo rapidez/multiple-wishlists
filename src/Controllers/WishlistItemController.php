@@ -51,7 +51,7 @@ class WishlistItemController extends Controller
     {
         $validated = $request->validate([
             'description' => 'max:255',
-            'qty' => 'required|integer|min:1'
+            'qty' => 'integer|min:1'
         ]);
 
         $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
