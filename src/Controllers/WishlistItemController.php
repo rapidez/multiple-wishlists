@@ -29,7 +29,7 @@ class WishlistItemController extends Controller
             'wishlist_id' => 'required|integer',
             'product_id' => 'required|integer',
             'qty' => 'required|integer|min:1',
-            'description' => 'string|max:255'
+            'description' => 'nullable|string|max:255'
         ]);
 
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->isCustomer($request->customer_id)->findOrFail($request->wishlist_id);
@@ -65,7 +65,7 @@ class WishlistItemController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'description' => 'max:255',
+            'description' => 'nullable|string|max:255',
             'qty' => 'integer|min:1'
         ]);
 

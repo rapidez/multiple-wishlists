@@ -58,23 +58,20 @@ export default {
             return wishlist.items.find(e => e.product_id == productId);
         },
 
-        async toggleItem(wishlist, productId, qty = 1, redirect) {
+        async toggleItem(wishlist, productId, qty = 1, description = '', redirect) {
             var contains = this.contains(wishlist, productId);
             if (contains) {
-                this.removeItem(wishlist, contains.wishlist_item_id);
+                this.removeItem(wishlist, contains.wishlist_item_id, redirect);
             } else {
-                this.addItem(wishlist, productId, qty);
-            }
-
-            if(redirect) {
-                Turbolinks.visit(redirect);
+                this.addItem(wishlist, productId, qty, description, redirect);
             }
         },
 
-        async addItem(wishlist, productId, qty = 1, redirect) {
+        async addItem(wishlist, productId, qty = 1, description = '', redirect) {
             await this.$root.apiRequest('post', '/api/wishlists/item/', {
                 wishlist_id: wishlist.id,
                 product_id: productId,
+                description: description,
                 qty: qty
             }, function (response) {
                 wishlist.items.push(response.data);
