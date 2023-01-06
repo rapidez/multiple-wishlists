@@ -22,14 +22,17 @@ class WishlistItemController extends Controller
 
     public function store(Request $request)
     {
+        // Check before validating to allow SKUs to be transformed
+        $this->checkProduct($request);
+
         $validated = $request->validate([
             'wishlist_id' => 'required|integer',
             'product_id' => 'required|integer',
-            'qty' => 'required|integer|min:1'
+            'qty' => 'required|integer|min:1',
+            'description' => 'string|max:255'
         ]);
 
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->isCustomer($request->customer_id)->findOrFail($request->wishlist_id);
-        $product = Product::selectAttributes(['id'])->findOrFail($request->product_id);
         $magentoWishlist = Wishlist::with('items')->isCustomer($request->customer_id)->firstOrFail();
 
         $existing = $rapidezWishlist->items()->firstWhere('wishlist_item.product_id', $request->product_id);
@@ -45,6 +48,18 @@ class WishlistItemController extends Controller
         ]);
 
         return $item;
+    }
+
+    private function checkProduct(Request $request)
+    {
+        // Accept either a SKU or a product ID
+        if (is_int($request->product_id)) {
+            $product = Product::selectAttributes(['id'])->findOrFail($request->product_id);
+        } else {
+            $builder = Product::selectAttributes(['id']);
+            $product = $builder->where($builder->getQuery()->from.'.sku', $request->product_id)->firstOrFail();
+            $request->request->add(['product_id' => $product->id]);
+        }
     }
 
     public function update(Request $request, $id)
@@ -68,7 +83,7 @@ class WishlistItemController extends Controller
         $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
             $query->isCustomer($request->customer_id);
         }])->findOrFail($id);
-        
+
         $item->delete();
 
         return $item;
