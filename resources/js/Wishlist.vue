@@ -48,6 +48,7 @@ export default {
 
         getWishlist(id) {
             var ret = this.wishlists.find(e => e.id == id);
+            if(!ret) return null;
             if(!ret.title) ret.title = "";
             if(!ret.description) ret.description = "";
             if(!ret.share) ret.share = false;
@@ -65,6 +66,19 @@ export default {
             } else {
                 this.addItem(wishlist, productId, qty, description, redirect);
             }
+        },
+
+        async checkMake(id, title, callback) {
+            var ret = this.getWishlist(id);
+            if(!ret) {
+                ret = await this.addWishlist(title);
+            }
+
+            if(callback) {
+                await callback(ret);
+            }
+
+            return ret;
         },
 
         async addItem(wishlist, productId, qty = 1, description = '', redirect) {
@@ -110,16 +124,20 @@ export default {
 
         async addWishlist(title, redirect) {
             var wishlists = this.wishlists;
+            var ret = null;
             await this.$root.apiRequest('post', '/api/wishlists/', {
                 title: title
             }, function (response) {
                 response.data.items = [];
                 wishlists.push(response.data);
+                ret = response.data;
             });
             this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
+            } else {
+                return ret;
             }
         },
 
@@ -172,7 +190,9 @@ export default {
             getWishlist: this.getWishlist,
             addWishlist: this.addWishlist,
             removeWishlist: this.removeWishlist,
-            editWishlist: this.editWishlist
+            editWishlist: this.editWishlist,
+
+            checkMake: this.checkMake
         })
     },
 }
