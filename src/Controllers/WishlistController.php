@@ -37,6 +37,7 @@ class WishlistController extends Controller
     public function store(Request $request): mixed
     {
         $validated = $request->validate([
+            'customer_id' => 'required|integer',
             'title' => 'required|max:255',
             'shared' => 'boolean'
         ]);

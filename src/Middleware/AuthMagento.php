@@ -32,6 +32,7 @@ class AuthMagento
 
         // Send the user's customer ID through
         $request->customer_id = $authId;
+        $request->request->add(['customer_id' => $authId]);
 
         return $next($request);
     }
