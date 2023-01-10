@@ -4,9 +4,6 @@ import wishlist from './Wishlist.vue'
 Vue.component('wishlist', wishlist)
 
 document.addEventListener('turbolinks:load', (event) => {
-    Vue.set(window.app.custom, 'currentWishlistData', [])
-    Vue.set(window.app.custom, 'itemEdit', -1)
-    Vue.set(window.app.custom, 'currentItem', {})
     window.app.$on('logout', () => {
         localStorage.removeItem('wishlists')
     });
