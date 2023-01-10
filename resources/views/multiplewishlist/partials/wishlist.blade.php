@@ -5,11 +5,11 @@
         <div class="flex">
             <p class="font-bold ml-4">@{{ wishlist.title }}</p>
             @if($editable)
-                <a class="text-primary underline mx-4" :href="'/account/wishlists/edit/' + wishlist.id">Edit</a>
+                <a class="text-primary underline mx-4" :href="'{{ route('wishlist.edit','') }}/' + wishlist.id">@lang('Edit')</a>
             @endif
         </div>
         <div v-if="wishlist.shared" class="text-sm text-gray-600">
-            Sharing link: <a :href="'/wishlists/shared/' + wishlist.sharing_token" class="text-primary underline">/wishlists/shared/@{{wishlist.sharing_token}}</a>
+            @lang('Sharing link:') <a :href="'{{ route('wishlist.shared','') }}/' + wishlist.sharing_token" class="text-primary underline">{{ route('wishlist.shared','') }}/@{{wishlist.sharing_token}}</a>
         </div>
     </div>
     <div v-if="wishlist.description" class="p-4 rounded-md bg-gray-100 mt-4 mb-6 whitespace-pre-line">
@@ -20,16 +20,16 @@
             <reactive-base :app="config.es_prefix + '_products_' + config.store" :url="config.es_url" v-if="loaded">
                 <reactive-list id="products" component-id="products" data-field="id" :default-query="function() { return { query: { terms: { 'id': wishlist.items.map(e => e.product_id) } } } }">
                     <div slot="renderResultStats"></div>
-                    <div slot="renderNoResults">This wishlist is empty.</div>
+                    <div slot="renderNoResults">@lang('This wishlist is empty.')</div>
                     <div slot="render" slot-scope="{ data }" class="flex flex-col">
                         <div class="self-end p-4">
                             <template v-if="data.length > 1">
                                 <x-rapidez::button type="primary" @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())">
-                                    Add all items to cart
+                                    @lang('Add all items to cart')
                                 </x-rapidez::button>
                             </template>
                         </div>
-                        <div 
+                        <div
                             v-for="(item, index) in data"
                             class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4"
                             :key="item.id"
@@ -74,7 +74,7 @@
                                 @endif
                             </template>
                             <div v-else class="text-center w-full italic text-gray-700 p-5">
-                                Deleted
+                                @lang('Deleted')
                             </div>
                         </div>
                     </div>
