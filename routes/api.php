@@ -8,10 +8,7 @@ use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 Route::middleware('api')->prefix('api')->group(function () {
     Route::get('wishlists/shared/{token}', [WishlistController::class, 'shared']);
-
-    Route::middleware([AuthMagento::class])->group(function () {
-        Route::get('wishlists/all', [WishlistController::class, 'allWithItems']);
-        Route::apiResource('wishlists/item', WishlistItemController::class)->except('show', 'index');
-        Route::apiResource('wishlists', WishlistController::class);
-    });
+    Route::get('wishlists/all', [WishlistController::class, 'allWithItems']);
+    Route::apiResource('wishlists/item', WishlistItemController::class)->except('show', 'index');
+    Route::apiResource('wishlists', WishlistController::class);
 });

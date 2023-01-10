@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
+use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 class WishlistController extends Controller
 {
@@ -19,19 +20,19 @@ class WishlistController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
-    public function index(Request $request): Collection
+    public function index(): Collection
     {
-        return RapidezWishlist::withCount('items')->isCustomer($request->customer_id)->get();
+        return RapidezWishlist::withCount('items')->get();
     }
 
-    public function show(Request $request, $id): mixed
+    public function show(RapidezWishlist $wishlist): mixed
     {
-        return RapidezWishlist::with('items')->isCustomer($request->customer_id)->findOrFail($id);
+        return $wishlist->load('items');
     }
 
     public function shared($token): mixed
     {
-        return RapidezWishlist::with('items')->isShared($token)->firstOrFail();
+        return RapidezWishlist::with('items')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
     }
 
     public function store(Request $request): mixed
@@ -53,7 +54,7 @@ class WishlistController extends Controller
         return $rapidezWishlist;
     }
 
-    public function update(Request $request, $id): mixed
+    public function update(Request $request, RapidezWishlist $wishlist): mixed
     {
         $validated = $request->validate([
             'title' => 'max:255',
@@ -61,19 +62,18 @@ class WishlistController extends Controller
             'shared' => 'boolean'
         ]);
 
-        $rapidezWishlist = RapidezWishlist::isCustomer($request->customer_id)->findOrFail($id);
-        $rapidezWishlist->update($validated);
+        $wishlist->update($validated);
 
-        return $rapidezWishlist;
+        return $wishlist;
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(RapidezWishlist $wishlist)
     {
-        return RapidezWishlist::isCustomer($request->customer_id)->findOrFail($id)->delete();
+        $wishlist->delete();
     }
 
-    public function allWithItems(Request $request): mixed
+    public function allWithItems(): mixed
     {
-        return RapidezWishlist::with('items')->isCustomer($request->customer_id)->get();
+        return RapidezWishlist::with('items')->get();
     }
 }

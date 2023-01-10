@@ -62,30 +62,22 @@ class WishlistItemController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, WishlistItem $item)
     {
         $validated = $request->validate([
             'description' => 'nullable|string|max:255',
             'qty' => 'integer|min:1'
         ]);
 
-        $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
-            $query->isCustomer($request->customer_id);
-        }])->findOrFail($id);
-
+        $item->rapidezWishlist()->firstOrFail();
         $item->update($validated);
-
         return $item;
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, WishlistItem $item)
     {
-        $item = WishlistItem::with(['magentoWishlist' => function ($query) use ($request) {
-            $query->isCustomer($request->customer_id);
-        }])->findOrFail($id);
-
+        $item->rapidezWishlist()->firstOrFail();
         $item->delete();
-
         return $item;
     }
 }

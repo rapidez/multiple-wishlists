@@ -33,7 +33,7 @@ class WishlistItem extends Model
 
     public function rapidezWishlist()
     {
-        return $this->hasOneThrough(RapidezWishlist::class, RapidezWishlistItem::class);
+        return $this->hasOneThrough(RapidezWishlist::class, RapidezWishlistItem::class, 'wishlist_item_id', 'id', null, 'wishlist_id');
     }
 
     public function rapidezItem()
