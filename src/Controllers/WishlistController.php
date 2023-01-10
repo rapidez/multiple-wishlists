@@ -56,9 +56,9 @@ class WishlistController extends Controller
     public function update(Request $request, $id): mixed
     {
         $validated = $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'max:255',
             'description' => 'max:65535',
-            'shared' => 'required|boolean'
+            'shared' => 'boolean'
         ]);
 
         $rapidezWishlist = RapidezWishlist::isCustomer($request->customer_id)->findOrFail($id);

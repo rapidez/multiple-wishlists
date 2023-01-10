@@ -15,6 +15,14 @@ export default {
         }
     },
 
+    watch: {
+        wishlists: {
+            handler: function() {
+                localStorage.wishlists = JSON.stringify(this.wishlists);
+            }, deep: true
+        }
+    },
+
     mounted() {
         if(this.sharedId) {
             this.fetchShared();
@@ -90,31 +98,30 @@ export default {
             }, function (response) {
                 wishlist.items.push(response.data);
             });
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
             }
         },
 
-        async removeItem(wishlist, wishlistItemId, redirect) {
+        async removeItem(wishlist, productId, redirect) {
+            var wishlistItemId = this.findItem(wishlist, productId).wishlist_item_id;
             await this.$root.apiRequest('delete', '/api/wishlists/item/' + wishlistItemId, {}, function (response) {
                 window.Vue.delete(wishlist.items, wishlist.items.findIndex(e => e.wishlist_item_id == wishlistItemId));
             });
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
             }
         },
 
-        async editItem(wishlist, wishlistItemId, variables, redirect) {
+        async editItem(wishlist, productId, variables, redirect) {
+            var wishlistItemId = this.findItem(wishlist, productId).wishlist_item_id;
             await this.$root.apiRequest('patch', '/api/wishlists/item/' + wishlistItemId, variables, function (response) {
                 var item = wishlist.items.find(e => e.wishlist_item_id == wishlistItemId);
                 item.description = response.data.description;
                 item.qty = response.data.qty;
             })
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
@@ -132,7 +139,6 @@ export default {
                 wishlists.push(response.data);
                 ret = response.data;
             });
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
@@ -142,6 +148,7 @@ export default {
         },
 
         async editWishlist(wishlist, title, description, shared, redirect) {
+            console.log([title, description, shared]);
             await this.$root.apiRequest('patch', '/api/wishlists/' + wishlist.id, {
                 title: title,
                 description: description ?? '',
@@ -151,7 +158,6 @@ export default {
                 wishlist.description = response.data.description;
                 wishlist.shared = response.data.shared;
             });
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
@@ -163,16 +169,11 @@ export default {
             await this.$root.apiRequest('delete', '/api/wishlists/' + wishlist.id, {}, function (response) {
                 window.Vue.delete(wishlists, wishlists.findIndex(e => e.id == wishlist.id));
             })
-            this.updateLocalStorage();
 
             if(redirect) {
                 Turbolinks.visit(redirect);
             }
         },
-
-        updateLocalStorage() {
-            localStorage.wishlists = JSON.stringify(this.wishlists);
-        }
     },
 
     render() {
@@ -191,6 +192,7 @@ export default {
             addWishlist: this.addWishlist,
             removeWishlist: this.removeWishlist,
             editWishlist: this.editWishlist,
+            tempWishlist: JSON.parse(JSON.stringify(this.wishlist)),
 
             checkMake: this.checkMake
         })

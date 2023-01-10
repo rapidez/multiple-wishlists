@@ -49,8 +49,9 @@
                                     <div class="flex justify-between w-full">
                                         <textarea
                                             class="text-gray-700 mx-2 w-full"
-                                            @focusout="editItem(wishlist, findItem(wishlist, item.id).wishlist_item_id, { description: $event.target.value })"
-                                        >@{{ findItem(wishlist, item.id).description }}</textarea>
+                                            @focusout="editItem(wishlist, item.id, { description: $event.target.value })"
+                                            v-model.lazy="findItem(wishlist, item.id).description"
+                                        ></textarea>
                                         <div class="flex flex-col px-5">
                                             <div class="flex gap-3 pr-10">
                                                 <template v-if="item.type == 'simple'">
@@ -59,7 +60,7 @@
                                                 @if($editable)
                                                     <button
                                                         class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md"
-                                                        @click="removeItem(wishlist, findItem(wishlist, item.id).wishlist_item_id)"
+                                                        @click="removeItem(wishlist, item.id)"
                                                     >
                                                         X
                                                     </button>
