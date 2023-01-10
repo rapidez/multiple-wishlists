@@ -4,6 +4,7 @@ namespace Rapidez\MultipleWishlist\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 class Wishlist extends Model
 {
@@ -20,6 +21,8 @@ class Wishlist extends Model
             $wishlist->sharing_code = md5(uniqid('mwl'));
             $wishlist->save();
         });
+
+        static::addGlobalScope(new CustomerScope);
     }
 
     public function items()

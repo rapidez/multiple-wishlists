@@ -70,7 +70,7 @@ export default {
         async toggleItem(wishlist, productId, qty = 1, description = '', redirect) {
             var item = this.findItem(wishlist, productId);
             if (item) {
-                this.removeItem(wishlist, item.wishlist_item_id, redirect);
+                this.removeItem(wishlist, productId, redirect);
             } else {
                 this.addItem(wishlist, productId, qty, description, redirect);
             }
