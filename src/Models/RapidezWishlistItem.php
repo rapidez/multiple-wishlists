@@ -8,7 +8,7 @@ class RapidezWishlistItem extends Model
 {
     protected $table = 'rapidez_wishlist_item';
 
-    protected $fillable = ['wishlist_item_id', 'wishlist_id'];
+    protected $guarded = [];
 
     public function item()
     {

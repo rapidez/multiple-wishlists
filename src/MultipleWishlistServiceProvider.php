@@ -2,18 +2,10 @@
 
 namespace Rapidez\MultipleWishlist;
 
-use App\Policies\WishlistPolicy;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 
 class MultipleWishlistServiceProvider extends ServiceProvider
 {
-    protected $policies = [
-        RapidezWishlist::class => WishlistPolicy::class,
-    ];
 
     public function boot()
     {

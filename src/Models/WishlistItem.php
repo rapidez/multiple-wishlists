@@ -9,7 +9,7 @@ class WishlistItem extends Model
     protected $table = 'wishlist_item';
     protected $primaryKey = 'wishlist_item_id';
 
-    protected $fillable = ['product_id', 'qty', 'description', 'added_at'];
+    protected $guarded = [];
 
     protected $casts = [
         'qty' => 'integer'

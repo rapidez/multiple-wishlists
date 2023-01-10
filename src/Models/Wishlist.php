@@ -10,7 +10,7 @@ class Wishlist extends Model
     protected $table = 'wishlist';
     protected $primaryKey = 'wishlist_id';
 
-    protected $fillable = ['customer_id'];
+    protected $guarded = [];
 
     public const CREATED_AT = null;
 
