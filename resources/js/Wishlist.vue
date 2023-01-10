@@ -55,12 +55,12 @@ export default {
         },
 
         getWishlist(id) {
-            var ret = this.wishlists.find(e => e.id == id);
-            if(!ret) return null;
-            if(!ret.title) ret.title = "";
-            if(!ret.description) ret.description = "";
-            if(!ret.share) ret.share = false;
-            return ret;
+            var wishlist = this.wishlists.find(e => e.id == id);
+            if(!wishlist) return null;
+            if(!wishlist.title) ret.title = "";
+            if(!wishlist.description) ret.description = "";
+            if(!wishlist.share) ret.share = false;
+            return wishlist;
         },
 
         findItem(wishlist, productId) {
@@ -77,16 +77,16 @@ export default {
         },
 
         async checkMake(id, title, callback) {
-            var ret = this.getWishlist(id);
-            if(!ret) {
-                ret = await this.addWishlist(title);
+            var wishlist = this.getWishlist(id);
+            if(!wishlist) {
+                wishlist = await this.addWishlist(title);
             }
 
             if(callback) {
-                await callback(ret);
+                await callback(wishlist);
             }
 
-            return ret;
+            return wishlist;
         },
 
         async addItem(wishlist, productId, qty = 1, description = '', redirect) {
@@ -131,19 +131,19 @@ export default {
 
         async addWishlist(title, redirect) {
             var wishlists = this.wishlists;
-            var ret = null;
+            var responseData = null;
             await this.$root.apiRequest('post', '/api/wishlists/', {
                 title: title
             }, function (response) {
                 response.data.items = [];
                 wishlists.push(response.data);
-                ret = response.data;
+                responseData = response.data;
             });
 
             if(redirect) {
                 Turbolinks.visit(redirect);
             } else {
-                return ret;
+                return responseData;
             }
         },
 
