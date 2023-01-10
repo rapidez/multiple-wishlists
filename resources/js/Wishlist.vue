@@ -55,14 +55,14 @@ export default {
             return ret;
         },
 
-        contains(wishlist, productId) {
+        findItem(wishlist, productId) {
             return wishlist.items.find(e => e.product_id == productId);
         },
 
         async toggleItem(wishlist, productId, qty = 1, description = '', redirect) {
-            var contains = this.contains(wishlist, productId);
-            if (contains) {
-                this.removeItem(wishlist, contains.wishlist_item_id, redirect);
+            var item = this.findItem(wishlist, productId);
+            if (item) {
+                this.removeItem(wishlist, item.wishlist_item_id, redirect);
             } else {
                 this.addItem(wishlist, productId, qty, description, redirect);
             }
@@ -185,7 +185,7 @@ export default {
             editItem: this.editItem,
             toggleItem: this.toggleItem,
 
-            contains: this.contains,
+            findItem: this.findItem,
 
             getWishlist: this.getWishlist,
             addWishlist: this.addWishlist,

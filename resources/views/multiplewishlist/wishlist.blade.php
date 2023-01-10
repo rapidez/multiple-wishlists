@@ -6,7 +6,7 @@
 
 @section('account-content')
     <a class="text-primary underline" href="{{ route('wishlist.listing') }}">Back to listing</a>
-    <wishlist :wishlist-id="{{ $id }}" v-slot="{ wishlist, contains, editItem, removeItem }">
+    <wishlist :wishlist-id="{{ $id }}" v-slot="{ wishlist, findItem, editItem, removeItem }">
         @include('rapidez::multiplewishlist.partials.wishlist')
     </wishlist>
 @endsection

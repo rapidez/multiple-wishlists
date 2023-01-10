@@ -34,7 +34,7 @@
                             class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4"
                             :key="item.id"
                         >
-                            <template v-if="contains(wishlist, item.id)">
+                            <template v-if="findItem(wishlist, item.id)">
                                 <a :href="item.url" class="flex gap-2 w-1/2">
                                     <picture v-if="item.thumbnail">
                                         <source :srcset="'/storage/resizes/200/catalog/product' + item.thumbnail + '.webp'" type="image/webp">
@@ -49,17 +49,17 @@
                                     <div class="flex justify-between w-full">
                                         <textarea
                                             class="text-gray-700 mx-2 w-full"
-                                            @focusout="editItem(wishlist, contains(wishlist, item.id).wishlist_item_id, { description: $event.target.value })"
-                                        >@{{ contains(wishlist, item.id).description }}</textarea>
+                                            @focusout="editItem(wishlist, findItem(wishlist, item.id).wishlist_item_id, { description: $event.target.value })"
+                                        >@{{ findItem(wishlist, item.id).description }}</textarea>
                                         <div class="flex flex-col px-5">
                                             <div class="flex gap-3 pr-10">
                                                 <template v-if="item.type == 'simple'">
-                                                    @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'contains(wishlist, item.id).qty'])
+                                                    @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'findItem(wishlist, item.id).qty'])
                                                 </template>
                                                 @if($editable)
                                                     <button
                                                         class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md"
-                                                        @click="removeItem(wishlist, contains(wishlist, item.id).wishlist_item_id)"
+                                                        @click="removeItem(wishlist, findItem(wishlist, item.id).wishlist_item_id)"
                                                     >
                                                         X
                                                     </button>
@@ -69,7 +69,7 @@
                                     </div>
                                 @else
                                     <div class="text-gray-700 mx-2 w-full">
-                                        @{{ contains(wishlist, item.id).description }}
+                                        @{{ findItem(wishlist, item.id).description }}
                                     </div>
                                 @endif
                             </template>
