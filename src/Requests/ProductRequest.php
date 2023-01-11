@@ -17,15 +17,14 @@ class ProductRequest extends FormRequest
         return true;
     }
 
-    public function withValidator($validator)
+    public function prepareForValidation()
     {
         if (is_int($this->product_id)) {
             $product = Product::selectAttributes(['id'])->findOrFail($this->product_id);
         } else {
             $builder = Product::selectAttributes(['id']);
             $product = $builder->where($builder->getQuery()->from.'.sku', $this->product_id)->firstOrFail();
-            $this->request->add(['product_id' => $product->id]);
-            $this->product_id = $product->id;
+            $this->merge(['product_id' => $product->id]);
         }
     }
 

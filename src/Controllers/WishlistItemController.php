@@ -26,9 +26,9 @@ class WishlistItemController extends Controller
         ]);
         $validated = $request->validate([
             'qty' => 'required|integer|min:1',
-            'description' => 'nullable|string|max:255'
+            'description' => 'nullable|string|max:255',
+            'product_id' => 'required|integer'
         ]);
-        $validated['product_id'] = $request->product_id;
 
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->findOrFail($request->wishlist_id);
         $magentoWishlist = Wishlist::with('items')->firstOrFail();
