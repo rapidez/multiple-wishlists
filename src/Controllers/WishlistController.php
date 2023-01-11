@@ -8,10 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
-use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
+use Rapidez\MultipleWishlist\Requests\AuthenticatedRequest;
 use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 class WishlistController extends Controller
@@ -35,7 +34,7 @@ class WishlistController extends Controller
         return RapidezWishlist::with('items')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
     }
 
-    public function store(Request $request): mixed
+    public function store(AuthenticatedRequest $request): mixed
     {
         $validated = $request->validate([
             'customer_id' => 'required|integer',

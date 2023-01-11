@@ -7,7 +7,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\WishlistItem;
@@ -21,10 +20,8 @@ class WishlistItemController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $request->validate([
-            'wishlist_id' => 'required|integer'
-        ]);
         $validated = $request->validate([
+            'wishlist_id' => 'required|integer|exclude',
             'qty' => 'required|integer|min:1',
             'description' => 'nullable|string|max:255',
             'product_id' => 'required|integer'
