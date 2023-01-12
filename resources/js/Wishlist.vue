@@ -148,7 +148,6 @@ export default {
         },
 
         async editWishlist(wishlist, title, description, shared, redirect) {
-            console.log([title, description, shared]);
             await this.$root.apiRequest('patch', '/api/wishlists/' + wishlist.id, {
                 title: title,
                 description: description ?? '',
