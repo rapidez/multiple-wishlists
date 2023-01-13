@@ -1,0 +1,40 @@
+{
+    "name": "rapidez/multiple-wishlists",
+    "description": "Rapidez Multiple Wishlist",
+    "keywords": [
+        "rapidez"
+    ],
+    "homepage": "https://rapidez.io",
+    "authors": [
+        {
+            "name": "Jade Geels",
+            "email": "jade@justbetter.nl",
+            "homepage": "https://justbetter.nl",
+            "role": "Developer at JustBetter"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0|^8.1",
+        "illuminate/database": "^9.0",
+        "illuminate/support": "^9.0",
+        "illuminate/view": "^9.0",
+        "rapidez/core": "~0.74"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rapidez\\MultipleWishlist\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rapidez\\MultipleWishlist\\MultipleWishlistServiceProvider"
+            ]
+        }
+    }
+}
