@@ -57,9 +57,9 @@ export default {
         getWishlist(id) {
             var wishlist = this.wishlists.find(e => e.id == id);
             if(!wishlist) return null;
-            if(!wishlist.title) ret.title = "";
-            if(!wishlist.description) ret.description = "";
-            if(!wishlist.share) ret.share = false;
+            if(!wishlist.title) wishlist.title = "";
+            if(!wishlist.description) wishlist.description = "";
+            if(!wishlist.share) wishlist.share = false;
             return wishlist;
         },
 
