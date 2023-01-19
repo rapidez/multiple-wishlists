@@ -100,7 +100,7 @@ export default {
             });
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             }
         },
 
@@ -111,7 +111,7 @@ export default {
             });
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             }
         },
 
@@ -124,7 +124,7 @@ export default {
             })
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             }
         },
 
@@ -141,7 +141,7 @@ export default {
             });
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             } else {
                 return responseData;
             }
@@ -159,7 +159,7 @@ export default {
             });
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             }
         },
 
@@ -170,7 +170,7 @@ export default {
             })
 
             if(redirect) {
-                Turbolinks.visit(redirect);
+                Turbo.visit(redirect);
             }
         },
     },

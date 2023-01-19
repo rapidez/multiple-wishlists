@@ -3,7 +3,7 @@ import axios from 'axios'
 import wishlist from './Wishlist.vue'
 Vue.component('wishlist', wishlist)
 
-document.addEventListener('turbolinks:load', (event) => {
+document.addEventListener('turbo:load', (event) => {
     window.app.$on('logout', () => {
         localStorage.removeItem('wishlists')
     });
