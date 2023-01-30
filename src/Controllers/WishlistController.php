@@ -46,7 +46,9 @@ class WishlistController extends Controller
         $rapidezWishlist->save();
 
         if (!Wishlist::where('customer_id', $request->customer_id)->first()) {
-            $magentoWishlist = new Wishlist($validated);
+            $magentoWishlist = new Wishlist([
+                'customer_id' => $request->customer_id,
+            ]);
             $magentoWishlist->save();
         }
 
