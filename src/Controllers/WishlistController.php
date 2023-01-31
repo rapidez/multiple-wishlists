@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 use Rapidez\MultipleWishlist\Requests\AuthenticatedRequest;
@@ -46,7 +47,7 @@ class WishlistController extends Controller
         $rapidezWishlist->save();
 
         if (!Wishlist::where('customer_id', $request->customer_id)->first()) {
-            $magentoWishlist = new Wishlist($validated);
+            $magentoWishlist = new Wishlist(Arr::only($validated, ['customer_id']));
             $magentoWishlist->save();
         }
 
