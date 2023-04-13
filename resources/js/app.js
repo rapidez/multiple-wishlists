@@ -10,8 +10,13 @@ document.addEventListener('turbo:load', (event) => {
 })
 
 Vue.mixin({
+    data() {
+        return {
+            wishlistsLoading: false
+        }
+    },
     methods: {
-        apiRequest: async function(method, url, variables = {}, callback = null) {
+        apiRequest: async function(method, url, variables = {}, callback = null, validateStatus = (status) => { return status >= 200 && status < 300 }) {
             try {
                 let headers = {}
 
@@ -27,7 +32,9 @@ Vue.mixin({
                     method: method,
                     url: url,
                     data: variables,
-                    headers: headers})
+                    headers: headers,
+                    validateStatus: validateStatus,
+                })
 
                 if (response.data.errors) {
                     Notify(response.data.errors[0].message, 'error')
