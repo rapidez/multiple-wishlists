@@ -24,6 +24,8 @@ export default {
     },
 
     mounted() {
+        this.$root.$on('wishlists-loaded', this.fetchFromLocalStorage);
+        
         if(this.sharedId) {
             this.fetchShared();
         } else {
@@ -37,12 +39,28 @@ export default {
                 return;
             }
 
-            if (!localStorage.wishlists) {
-                await this.$root.apiRequest('get', '/api/wishlists/all', {}, function(response) {
-                    localStorage.wishlists = JSON.stringify(response.data);
-                })
+            if(this.$root.wishlistsLoading) {
+                return;
             }
 
+            if (!localStorage.wishlists) {
+                this.$root.wishlistsLoading = true;
+                await this.$root.apiRequest('get', '/api/wishlists/all', {}, function(response) {
+                    if(response.status < 200 || response.status >= 300) {
+                        localStorage.wishlists = '[]';
+                    } else {
+                        localStorage.wishlists = JSON.stringify(response.data);
+                    }
+                }, null)
+
+                this.$root.wishlistsLoading = false;
+                this.$root.$emit('wishlists-loaded');
+            }
+
+            this.fetchFromLocalStorage();
+        },
+
+        fetchFromLocalStorage() {
             this.wishlists = JSON.parse(localStorage.wishlists);
 
             if(this.wishlistId) {
