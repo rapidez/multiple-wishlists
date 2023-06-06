@@ -20,9 +20,9 @@
                                 </button>
                             </div>
                         </div>
-                        <x-rapidez::button variant="outline" @click="addWishlist('New wishlist')">
+                        <x-rapidez::button.outline @click="addWishlist('New wishlist')">
                             +
-                        </x-rapidez::button>
+                        </x-rapidez::button.outline>
                     </div>
                 </wishlist>
             </lazy>

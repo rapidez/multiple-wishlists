@@ -24,9 +24,9 @@
                     <div slot="render" slot-scope="{ data }" class="flex flex-col">
                         <div class="self-end p-4">
                             <template v-if="data.length > 1">
-                                <x-rapidez::button type="primary" @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())">
+                                <x-rapidez::button.primary @click.prevent="$root.$refs['addToCart'].forEach(e => e.click())">
                                     @lang('Add all items to cart')
-                                </x-rapidez::button>
+                                </x-rapidez::button.primary>
                             </template>
                         </div>
                         <div

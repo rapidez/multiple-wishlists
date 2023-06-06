@@ -23,18 +23,18 @@
                             <a :href="'{{ route('wishlist.shared', '') }}/' + wishlist.sharing_token" v-if="wishlist.shared" class="text-primary hover:underline">
                                 @lang('(shared)')
                             </a>
-                            <x-rapidez::button v-if="wishlist" ::href="'{{ route('wishlist.edit', '') }}/' + wishlist.id">
+                            <x-rapidez::button.primary v-if="wishlist" ::href="'{{ route('wishlist.edit', '') }}/' + wishlist.id">
                                 @lang('Edit')
-                            </x-rapidez::button>
-                            <x-rapidez::button variant="outline" v-if="wishlist" @click="removeWishlist(wishlist)">
+                            </x-rapidez::button.primary>
+                            <x-rapidez::button.outline v-if="wishlist" @click="removeWishlist(wishlist)">
                                 @lang('Delete')
-                            </x-rapidez::button>
+                            </x-rapidez::button.outline>
                         </div>
                     </div>
                 </div>
-                <x-rapidez::button variant="outline" class="self-start mt-2" @click="addWishlist('{{ __('New wishlist') }}')">
+                <x-rapidez::button.outline class="self-start mt-2" @click="addWishlist('{{ __('New wishlist') }}')">
                     @lang('Create new wishlist')
-                </x-rapidez::button>
+                </x-rapidez::button.outline>
             </div>
         </wishlist>
     </div>
