@@ -30,7 +30,7 @@ Vue.mixin({
 
                 let response = await axios({
                     method: method,
-                    url: url,
+                    url: window.url(url),
                     data: variables,
                     headers: headers,
                     validateStatus: validateStatus,

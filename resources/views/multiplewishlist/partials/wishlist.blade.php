@@ -35,7 +35,7 @@
                             :key="item.id"
                         >
                             <template v-if="findItem(wishlist, item.id)">
-                                <a :href="item.url" class="flex gap-2 w-1/2">
+                                <a :href="item.url | url" class="flex gap-2 w-1/2">
                                     <picture v-if="item.thumbnail">
                                         <source :srcset="'/storage/resizes/200/catalog/product' + item.thumbnail + '.webp'" type="image/webp">
                                         <img :src="'/storage/resizes/200/catalog/product' + item.thumbnail" class="object-contain rounded-md h-40" :alt="item.name" loading="lazy" />
