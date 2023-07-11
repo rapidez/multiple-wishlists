@@ -6,7 +6,7 @@
             <x-heroicon-s-heart class="w-6 h-6" v-if="!isOpen"/>
             <x-heroicon-o-heart class="w-6 h-6" v-else/>
         </button>
-        <div v-show="isOpen" v-if="$root.user" v-cloak class="absolute right-0 border rounded-md bg-gray-100 p-5 w-64">
+        <div v-show="isOpen" v-if="$root.user?.id" v-cloak class="absolute right-0 border rounded-md bg-gray-100 p-5 w-64">
             <lazy>
                 <wishlist v-slot="{ wishlists, toggleItem, findItem, addWishlist }">
                     <div class="flex flex-col gap-2">
