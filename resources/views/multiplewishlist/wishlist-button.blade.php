@@ -1,4 +1,4 @@
-@props(['productId' => $product->id])
+@props(['productId' => $product->entity_id ?? $product->id])
 
 <toggler v-slot="{ isOpen, toggle, close }" v-cloak>
     <div class="absolute right-0 top-0">
