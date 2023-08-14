@@ -18,7 +18,7 @@
     <listing v-cloak>
         <div slot-scope="{ loaded }">
             <reactive-base :app="config.es_prefix + '_products_' + config.store" :url="config.es_url" v-if="loaded">
-                <reactive-list id="products" component-id="products" data-field="id" :default-query="function() { return { query: { terms: { 'id': wishlist.items.map(e => e.product_id) } } } }">
+                <reactive-list id="products" component-id="products" data-field="entity_id" :default-query="function() { return { query: { terms: { 'entity_id': wishlist.items.map(e => e.product_id) } } } }">
                     <div slot="renderResultStats"></div>
                     <div slot="renderNoResults">@lang('This wishlist is empty.')</div>
                     <div slot="render" slot-scope="{ data }" class="flex flex-col">
@@ -32,9 +32,9 @@
                         <div
                             v-for="(item, index) in data"
                             class="text-gray-900 border even:border-gray-200 odd:border-white hover:border-gray-800 duration-100 rounded-md even:bg-gray-200 flex items-center justify-between p-4"
-                            :key="item.id"
+                            :key="item.entity_id"
                         >
-                            <template v-if="findItem(wishlist, item.id)">
+                            <template v-if="findItem(wishlist, item.entity_id)">
                                 <a :href="item.url" class="flex gap-2 w-1/2">
                                     <picture v-if="item.thumbnail">
                                         <source :srcset="'/storage/resizes/200/catalog/product' + item.thumbnail + '.webp'" type="image/webp">
@@ -49,18 +49,18 @@
                                     <div class="flex justify-between w-full">
                                         <textarea
                                             class="text-gray-700 mx-2 w-full"
-                                            @focusout="editItem(wishlist, item.id, { description: $event.target.value })"
-                                            v-model.lazy="findItem(wishlist, item.id).description"
+                                            @focusout="editItem(wishlist, item.entity_id, { description: $event.target.value })"
+                                            v-model.lazy="findItem(wishlist, item.entity_id).description"
                                         ></textarea>
                                         <div class="flex flex-col px-5">
                                             <div class="flex gap-3 pr-10">
                                                 <template v-if="item.type == 'simple'">
-                                                    @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'findItem(wishlist, item.id).qty'])
+                                                    @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'findItem(wishlist, item.entity_id).qty'])
                                                 </template>
                                                 @if($editable)
                                                     <button
                                                         class="w-14 h-14 border border-red-600 bg-red-600 text-white hover:bg-white hover:text-red-600 transition rounded-md"
-                                                        @click="removeItem(wishlist, item.id)"
+                                                        @click="removeItem(wishlist, item.entity_id)"
                                                     >
                                                         X
                                                     </button>
@@ -70,7 +70,7 @@
                                     </div>
                                 @else
                                     <div class="text-gray-700 mx-2 w-full">
-                                        @{{ findItem(wishlist, item.id).description }}
+                                        @{{ findItem(wishlist, item.entity_id).description }}
                                     </div>
                                 @endif
                             </template>
