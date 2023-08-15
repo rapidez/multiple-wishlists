@@ -20,11 +20,11 @@ class ProductRequest extends FormRequest
     public function prepareForValidation()
     {
         if (is_int($this->product_id)) {
-            $product = Product::selectAttributes(['id'])->findOrFail($this->product_id);
+            $product = Product::withoutGlobalScopes()->findOrFail($this->product_id);
         } else {
-            $builder = Product::selectAttributes(['id']);
+            $builder = Product::withoutGlobalScopes();
             $product = $builder->where($builder->getQuery()->from.'.sku', $this->product_id)->firstOrFail();
-            $this->merge(['product_id' => $product->id]);
+            $this->merge(['product_id' => $product->entity_id]);
         }
     }
 
