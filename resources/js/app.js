@@ -21,14 +21,14 @@ Vue.mixin({
                 let headers = {}
 
                 if (this.$root.user) {
-                    headers['Authorization'] = `Bearer ${localStorage.token}`
+                    headers['Authorization'] = window.magentoUser.defaults.headers.common['Authorization']
                 }
 
                 if (window.config.store_code) {
                     headers['Store'] = window.config.store_code
                 }
 
-                let response = await axios({
+                let response = axios({
                     method: method,
                     url: window.url(url),
                     data: variables,
