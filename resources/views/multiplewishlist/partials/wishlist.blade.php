@@ -54,7 +54,7 @@
                                         ></textarea>
                                         <div class="flex flex-col px-5">
                                             <div class="flex gap-3 pr-10">
-                                                <template v-if="item.type == 'simple'">
+                                                <template v-if="item.type_id == 'simple'">
                                                     @include('rapidez::multiplewishlist.partials.addtocart', ['product' => 'item', 'qty' => 'findItem(wishlist, item.entity_id).qty'])
                                                 </template>
                                                 @if($editable)
