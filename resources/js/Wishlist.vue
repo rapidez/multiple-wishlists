@@ -25,7 +25,7 @@ export default {
 
     mounted() {
         this.$root.$on('wishlists-loaded', this.fetchFromLocalStorage);
-        
+
         if(this.sharedId) {
             this.fetchShared();
         } else {
@@ -34,6 +34,10 @@ export default {
     },
 
     methods: {
+        isWishlisted(productId) {
+            return this.wishlists.some(e => this.findItem(e, productId))
+        },
+
         async fetchWishlists() {
             if (!this.$root.user) {
                 return;
@@ -194,25 +198,7 @@ export default {
     },
 
     render() {
-        return this.$scopedSlots.default({
-            wishlists: this.wishlists,
-            wishlist: this.wishlist,
-
-            addItem: this.addItem,
-            removeItem: this.removeItem,
-            editItem: this.editItem,
-            toggleItem: this.toggleItem,
-
-            findItem: this.findItem,
-
-            getWishlist: this.getWishlist,
-            addWishlist: this.addWishlist,
-            removeWishlist: this.removeWishlist,
-            editWishlist: this.editWishlist,
-            tempWishlist: JSON.parse(JSON.stringify(this.wishlist)),
-
-            checkMake: this.checkMake
-        })
+        return this.$scopedSlots.default(this)
     },
 }
 </script>

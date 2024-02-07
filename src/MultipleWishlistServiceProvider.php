@@ -25,7 +25,7 @@ class MultipleWishlistServiceProvider extends ServiceProvider
 
     public function bootViews(): static
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'rapidez');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'rapidez-mw');
 
         return $this;
     }
