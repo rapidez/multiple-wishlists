@@ -4,5 +4,5 @@
 </button>
 
 <button v-else class="p-3" @click="toggle">
-    <x-heroicon-o-heart class="w-5 h-5 transition" v-bind:class="{ 'text-ct-primary': isOpen, 'text-ct-border hover:text-ct-primary': !isOpen }" />
+    <x-heroicon-o-heart v-bind:class="{ 'text-ct-primary': isOpen, 'text-ct-border hover:text-ct-primary': !isOpen }" class="w-5 h-5 transition" />
 </button>
