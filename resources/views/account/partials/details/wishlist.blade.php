@@ -43,9 +43,6 @@
                                     @include('rapidez-mw::account.partials.details.product.quantity')
                                     @include('rapidez-mw::account.partials.details.product.price')
                                 </template>
-                                <td v-else class="text-center w-full italic text-ct-inactive p-5">
-                                    @lang('Deleted')
-                                </td>
                             </x-rapidez-mw::table.body>
                         </table>
                         <div class="flex rounded bg-ct-inactive-100 p-3 md:justify-end">
