@@ -2,7 +2,7 @@
 
 <div v-if="wishlist">
     <div class="flex justify-between">
-        <div class="relative flex w-full justify-between mb-4">
+        <div class="relative flex w-full justify-between mb-4 max-lg:items-end">
             @include('rapidez-mw::account.partials.details.title')
             @include('rapidez-mw::account.partials.details.edit-button')
         </div>
