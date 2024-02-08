@@ -1,12 +1,12 @@
 @extends('rapidez::account.partials.layout')
 
-@section('title', __('Wishlist'))
+@section('title', __(''))
 
 @section('robots', 'NOINDEX,NOFOLLOW')
 
 @section('account-content')
-    <a class="text-primary underline" href="{{ route('wishlist.listing') }}">Back to listing</a>
     <wishlist :wishlist-id="{{ $id }}" v-slot="{ wishlist, findItem, editItem, removeItem }">
-        @include('rapidez::multiplewishlist.partials.wishlist')
+        @include('rapidez-mw::account.partials.details.wishlist')
     </wishlist>
+    @include('rapidez-mw::account.partials.details.back-button')
 @endsection

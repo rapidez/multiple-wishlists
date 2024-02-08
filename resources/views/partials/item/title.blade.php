@@ -1,3 +1,3 @@
-<span class="text-base text-ct-primary overflow-ellipsis overflow-hidden whitespace-nowrap">
+<span class="text-base text-ct-primary truncate">
     @{{ wishlist.title }}
 </span>
