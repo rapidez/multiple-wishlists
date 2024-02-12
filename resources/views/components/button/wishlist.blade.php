@@ -5,7 +5,7 @@
         <div v-on-click-away="close" {{ $attributes->class('w-full') }}>
             @include('rapidez-mw::partials.item.button')
             <div v-show="isOpen" v-cloak>
-                <x-rapidez-mw::dropdown class="relative px-2.5 py-3.5 -mx-2 sm:px-5 sm:mx-4">
+                <x-rapidez-mw::dropdown class="relative px-2.5 py-3.5 -mx-2 sm:px-5 sm:mx-3">
                     @include('rapidez-mw::partials.item.login')
                     <template v-else>
                         <div class="flex flex-col gap-2">
