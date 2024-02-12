@@ -1,7 +1,4 @@
-import wishlist from './Wishlist.vue'
-import wishlistItem from './WishlistItem.vue'
-Vue.component('wishlist', wishlist)
-Vue.component('wishlist-item', wishlistItem)
+Vue.component('wishlist', () => import('./Wishlist.vue'))
 
 document.addEventListener('turbo:load', (event) => {
     window.app.$on('logout', () => {

@@ -4,6 +4,9 @@ import { wishlists, create, remove, update, addItem, removeItem } from './stores
 import { refresh as refreshCart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
 import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
 
+import wishlistItem from './WishlistItem.vue'
+Vue.component('wishlist-item', wishlistItem)
+
 export default {
     props: {
         wishlistId: {
