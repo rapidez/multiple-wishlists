@@ -78,9 +78,11 @@ export default {
 
         async addAllToCart() {
             this.adding = true
-            for (let i = 0; i < this.wishlist.items.length; i++) {
-                await this.addToCart(this.wishlist.items[i])
-            }
+            await Promise.allSettled(
+                this.wishlist.items.map(
+                    (item) => this.addToCart(item)
+                )
+            )
 
             await refreshCart()
             this.added = true
@@ -95,7 +97,9 @@ export default {
                     quote_id: cartMask.value,
                     qty: item.qty,
                 }
-            }).catch();
+            }).catch((error) => {
+                Notify(error.response.data.message, 'error', error.response.data?.parameters)
+            })
         },
 
         toggleEdit() {
