@@ -16,10 +16,10 @@
                     <div slot="renderNoResults"></div>
                     <div slot="loader"></div>
                     <div slot="render" slot-scope="{ data, loading }" class="flex flex-col">
-                        <template v-if="loading">
-                            <x-heroicon-o-arrow-path class="animate-spin size-6"/>
-                        </template>
                         <template v-if="wishlist?.items?.length">
+                            <template v-if="loading">
+                                <x-heroicon-o-arrow-path class="animate-spin size-6"/>
+                            </template>
                             <table v-if="data" class="font-sans">
                                 <x-rapidez-mw::table.header>
                                     <th class="max-md:text-start">
