@@ -5,11 +5,3 @@ document.addEventListener('turbo:load', (event) => {
         localStorage.removeItem('wishlists')
     });
 })
-
-Vue.mixin({
-    data() {
-        return {
-            wishlistsLoading: false
-        }
-    },
-})
