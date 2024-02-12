@@ -9,7 +9,7 @@
             @endif
         </div>
         <div v-if="wishlist.shared" class="text-sm text-ct-primary">
-            @lang('Sharing link:') <a :href="shareUrl" class="text-ct-inactive underline">@{{ shareUrl }}</a>
+            @lang('Sharing link'): <a :href="shareUrl" class="text-ct-inactive underline">@{{ shareUrl }}</a>
         </div>
     </template>
 
