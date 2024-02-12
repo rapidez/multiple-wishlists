@@ -1,4 +1,5 @@
 <script>
+import { useShare } from '@vueuse/core'
 import { wishlists, create, remove, update, addItem, removeItem } from './stores/useWishlists'
 import { refresh as refreshCart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
 import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
@@ -16,6 +17,10 @@ export default {
         if(this.sharedId) {
             this.fetchShared()
         }
+
+        const { share, isSupported } = useShare()
+        this.shareFn = share
+        this.isSupported = isSupported
     },
 
     data() {
@@ -24,6 +29,9 @@ export default {
             added: false,
             editing: null,
             sharedWishlist: null,
+
+            shareFn: null,
+            isSupported: null,
         }
     },
 
@@ -110,6 +118,18 @@ export default {
             update(this.wishlist.id, this.editing)
             this.toggleEdit()
         },
+
+        share() {
+            if (!this.isSupported) {
+                return
+            }
+
+            return this.shareFn(Object.fromEntries(Object.entries({
+                title: this.wishlist.title,
+                text: this.wishlist.description,
+                url: this.shareUrl,
+            }).filter(([_, v]) => v)))
+        }
     },
 
     computed: {

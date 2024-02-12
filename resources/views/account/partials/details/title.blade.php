@@ -8,8 +8,11 @@
                 </x-rapidez-mw::button.accent>
             @endif
         </div>
-        <div v-if="wishlist.shared" class="text-sm text-ct-primary">
-            @lang('Sharing link'): <a :href="shareUrl" class="text-ct-inactive underline">@{{ shareUrl }}</a>
+        <div v-if="wishlist.shared" class="text-sm text-ct-primary flex flex-col">
+            <span>@lang('Sharing link'): <a :href="shareUrl" class="text-ct-inactive underline">@{{ shareUrl }}</a></span>
+            <template v-if="isSupported">
+                <x-rapidez-mw::button.accent v-on:click="share">@lang('Share')</x-rapidez-mw::button.accent>
+            </template>
         </div>
     </template>
 
