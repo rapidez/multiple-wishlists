@@ -42,7 +42,7 @@ class WishlistItemController extends Controller
             'wishlist_item_id' => $item->wishlist_item_id
         ]);
 
-        return $item;
+        return $item->load('product');
     }
 
     public function update(Request $request, WishlistItem $item)
