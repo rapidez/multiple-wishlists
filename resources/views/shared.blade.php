@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container mx-auto" v-cloak>
-        <wishlist shared-id="{{ $token }}" v-slot="{ wishlist, addAllToCart, adding, added, editing }">
+        <wishlist shared-id="{{ $token }}" v-slot="{ wishlist, shareUrl, share, isSupported, addAllToCart, adding, added, editing }">
             @include('rapidez-mw::account.partials.details.wishlist', ['editable' => false])
         </wishlist>
     </div>

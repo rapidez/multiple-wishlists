@@ -125,7 +125,15 @@ export default {
             }
 
             return null
-        }
+        },
+
+        shareUrl() {
+            if (!this.wishlist?.shared) {
+                return null
+            }
+
+            return window.url('/wishlists/shared/' + this.wishlist.sharing_token)
+        },
     },
 
     render() {
