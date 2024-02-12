@@ -1,3 +1,3 @@
 <td>
-    <span class="text-sm font-bold text-ct-primary">@{{ item.price | price }}</span>
+    <span class="text-sm font-bold text-ct-primary">@{{ product.price | price }}</span>
 </td>

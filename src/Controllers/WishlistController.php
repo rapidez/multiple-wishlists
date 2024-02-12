@@ -11,7 +11,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
-use Rapidez\MultipleWishlist\Requests\AuthenticatedRequest;
 use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 class WishlistController extends Controller
@@ -22,34 +21,26 @@ class WishlistController extends Controller
 
     public function index(): Collection
     {
-        return RapidezWishlist::withCount('items')->get();
-    }
-
-    public function show(RapidezWishlist $wishlist): mixed
-    {
-        return $wishlist->load('items');
+        return RapidezWishlist::with('items.product')->get();
     }
 
     public function shared($token): mixed
     {
-        return RapidezWishlist::with('items')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
+        return RapidezWishlist::with('items.product')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
     }
 
-    public function store(AuthenticatedRequest $request): mixed
+    public function store(Request $request): mixed
     {
         $validated = $request->validate([
-            'customer_id' => 'required|integer',
             'title' => 'required|max:255',
             'shared' => 'boolean'
         ]);
 
-        $rapidezWishlist = new RapidezWishlist($validated);
+        $rapidezWishlist = new RapidezWishlist([
+            'customer_id' => auth()->user()->entity_id,
+            ...$validated
+        ]);
         $rapidezWishlist->save();
-
-        if (!Wishlist::where('customer_id', $request->customer_id)->first()) {
-            $magentoWishlist = new Wishlist(Arr::only($validated, ['customer_id']));
-            $magentoWishlist->save();
-        }
 
         return $rapidezWishlist;
     }
@@ -70,10 +61,5 @@ class WishlistController extends Controller
     public function destroy(RapidezWishlist $wishlist)
     {
         $wishlist->delete();
-    }
-
-    public function allWithItems(): mixed
-    {
-        return RapidezWishlist::with('items')->get();
     }
 }

@@ -3,6 +3,7 @@
 namespace Rapidez\MultipleWishlist\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class WishlistItem extends Model
 {
@@ -33,11 +34,21 @@ class WishlistItem extends Model
 
     public function rapidezWishlist()
     {
-        return $this->hasOneThrough(RapidezWishlist::class, RapidezWishlistItem::class, 'wishlist_item_id', 'id', null, 'wishlist_id');
+        return $this->hasOneThrough(
+            RapidezWishlist::class,
+            RapidezWishlistItem::class,
+            'wishlist_item_id', 'id',
+            null, 'wishlist_id'
+        );
     }
 
     public function rapidezItem()
     {
         return $this->hasOne(RapidezWishlistItem::class, 'wishlist_item_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(ProductEntity::class, 'product_id');
     }
 }
