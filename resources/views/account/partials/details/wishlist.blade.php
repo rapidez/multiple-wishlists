@@ -44,7 +44,7 @@
                                     <template v-for="(item, index) in wishlist.items">
                                         <wishlist-item :data="data" :item="item" :wishlist-id="wishlist.id">
                                             <div
-                                                class="flex flex-wrap items-center gap-y-5 py-5 *:px-2 md:table-row md:*:py-5 md:*:px-1.5"
+                                                class="border-b flex flex-wrap items-center gap-y-5 py-5 *:px-2 last:border-none md:align-middle md:table-row md:*:py-5 md:*:px-1.5"
                                                 slot-scope="{ _renderProxy: self, product, remove, category }"
                                                 v-bind:key="item.id"
                                             >
