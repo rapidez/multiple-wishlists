@@ -7,10 +7,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\WishlistItem;
-use Rapidez\MultipleWishlist\Requests\ProductRequest;
 
 class WishlistItemController extends Controller
 {
@@ -18,31 +18,31 @@ class WishlistItemController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'wishlist_id' => 'required|integer|exclude',
-            'qty' => 'required|integer|min:1',
-            'description' => 'nullable|string|max:255',
             'product_id' => 'required|integer'
         ]);
 
+        // Make sure the wishlists exist
+        $wishlist = Wishlist::with('items')->first();
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->findOrFail($request->wishlist_id);
-        $magentoWishlist = Wishlist::with('items')->firstOrFail();
 
-        $existing = $rapidezWishlist->items()->firstWhere('wishlist_item.product_id', $request->product_id);
-        if ($existing) {
-            $existing->update($validated);
-            return $existing;
-        }
+        // Make sure the product exists
+        $product = Product::withoutGlobalScopes()->findOrFail($request->product_id);
 
-        $item = $magentoWishlist->items()->create($validated);
+        // Add item to wishlist item table, and add reference entry to rapidez wishlist item table
+        $item = $wishlist->items()->create([
+            'product_id' => $request->product_id,
+            'description' => null,
+            'qty' => 1,
+        ]);
         $rapidezWishlist->rapidezItems()->create([
-            'wishlist_item_id' => $item->wishlist_item_id,
-            'wishlist_id' => $request->wishlist_id
+            'wishlist_item_id' => $item->wishlist_item_id
         ]);
 
-        return $item;
+        return $item->load('product');
     }
 
     public function update(Request $request, WishlistItem $item)

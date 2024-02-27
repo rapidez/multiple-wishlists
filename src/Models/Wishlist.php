@@ -17,21 +17,11 @@ class Wishlist extends Model
 
     protected static function booted()
     {
-        static::created(function ($wishlist) {
-            $wishlist->sharing_code = md5(uniqid('mwl'));
-            $wishlist->save();
-        });
-
         static::addGlobalScope(new CustomerScope);
     }
 
     public function items()
     {
         return $this->hasMany(WishlistItem::class, 'wishlist_id');
-    }
-
-    public function scopeIsCustomer(Builder $query, $id)
-    {
-        return $query->where('customer_id', $id);
     }
 }

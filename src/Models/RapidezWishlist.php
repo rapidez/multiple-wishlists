@@ -19,6 +19,12 @@ class RapidezWishlist extends Model
             $wishlist->sharing_token = md5(uniqid('wl'));
             $wishlist->store_id = config('rapidez.store');
             $wishlist->save();
+
+            // Create Magento wishlist in case it doesn't already exist
+            if (!Wishlist::where('customer_id', $wishlist->customer_id)->first()) {
+                $magentoWishlist = new Wishlist(['customer_id' => $wishlist->customer_id]);
+                $magentoWishlist->save();
+            }
         });
 
         static::addGlobalScope(new CustomerScope);
@@ -29,26 +35,14 @@ class RapidezWishlist extends Model
         return $this->hasManyThrough(
             WishlistItem::class,
             RapidezWishlistItem::class,
-            'wishlist_id',
-            'wishlist_item_id',
-            'id',
-            'wishlist_item_id'
+            'wishlist_id', 'wishlist_item_id',
+            'id', 'wishlist_item_id',
         );
     }
 
     public function rapidezItems()
     {
         return $this->hasMany(RapidezWishlistItem::class, 'wishlist_id');
-    }
-
-    public function store()
-    {
-        return $this->belongsTo(Store::class);
-    }
-
-    public function scopeIsCustomer(Builder $query, $id)
-    {
-        return $query->where('customer_id', $id);
     }
 
     public function scopeIsShared(Builder $query, $token)
