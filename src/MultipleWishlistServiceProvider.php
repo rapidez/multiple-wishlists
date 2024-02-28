@@ -32,7 +32,7 @@ class MultipleWishlistServiceProvider extends ServiceProvider
 
     public function bootMigrations(): static
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/Migrations');
 
         return $this;
     }
