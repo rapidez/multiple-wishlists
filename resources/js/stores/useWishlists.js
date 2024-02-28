@@ -85,6 +85,7 @@ export const create = async function (title) {
         let data = {
             items: [],
             ...response.data,
+            shared: false,
         }
         wishlists.value.push(data)
         return data
