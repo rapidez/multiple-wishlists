@@ -45,6 +45,7 @@
                                         <wishlist-item :data="data" :item="item" :wishlist-id="wishlist.id">
                                             <div
                                                 class="border-b flex flex-wrap items-center gap-y-5 py-5 *:px-2 last:border-none md:align-middle md:table-row md:*:py-5 md:*:px-1.5"
+                                                v-bind:class="{'opacity-70': !product.in_stock }"
                                                 slot-scope="{ _renderProxy: self, product, remove, category }"
                                                 v-bind:key="item.id"
                                             >
