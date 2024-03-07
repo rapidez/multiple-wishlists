@@ -20,7 +20,7 @@
         "illuminate/database": "^10.0",
         "illuminate/support": "^10.0",
         "illuminate/view": "^10.0",
-        "rapidez/core": "^2.0",
+        "rapidez/core": "^2.1",
         "blade-ui-kit/blade-heroicons": "^2.0"
     },
     "autoload": {
