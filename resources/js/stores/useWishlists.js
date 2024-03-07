@@ -5,10 +5,6 @@ import { token } from 'Vendor/rapidez/core/resources/js/stores/useUser'
 export const wishlistStorage = useLocalStorage('wishlists', [])
 let isRefreshing = false
 let hasFetched = false
-let fetchHeaders = () => ({
-    Authorization: `Bearer ${token.value}`,
-    Store: window.config.store_code,
-})
 
 export const refresh = async function () {
     if (!token.value) {
@@ -23,7 +19,7 @@ export const refresh = async function () {
 
     isRefreshing = true
     try {
-        wishlistStorage.value = (await window.rapidezAPI('GET', 'wishlists', {}, { headers: fetchHeaders() })) || []
+        wishlistStorage.value = (await window.rapidezAPI('GET', 'wishlists', {})) || []
         hasFetched = true
     } catch (error) {
         console.error(error)
@@ -56,7 +52,7 @@ export default () => wishlists
 
 export const create = async function (title) {
     try {
-        let response = await window.rapidezAPI('POST', 'wishlists', { title: title }, { headers: fetchHeaders() })
+        let response = await window.rapidezAPI('POST', 'wishlists', { title: title })
 
         let data = { items: [], ...response }
         wishlists.value.push(data)
@@ -72,7 +68,7 @@ export const create = async function (title) {
 
 export const remove = async function (id) {
     try {
-        await window.rapidezAPI('DELETE', 'wishlists/' + id, {}, { headers: fetchHeaders() })
+        await window.rapidezAPI('DELETE', 'wishlists/' + id, {})
 
         let index = wishlists.value.findIndex(e => e.id == id)
         wishlists.value.splice(index, 1)
@@ -94,7 +90,7 @@ export const update = async function (id, data) {
                 description: data.description,
                 shared: data.shared,
             }
-            let response = await window.rapidezAPI('PATCH', 'wishlists/' + id, fetchData, { headers: fetchHeaders() })
+            let response = await window.rapidezAPI('PATCH', 'wishlists/' + id, fetchData)
 
             let wishlist = wishlists.value.find(e => e.id == id)
             wishlist.title = response.title
@@ -119,7 +115,7 @@ export const addItem = async function (id, productId) {
             wishlist_id: id,
             product_id: productId,
         }
-        let response = await window.rapidezAPI('POST', 'wishlists/item', fetchData, { headers: fetchHeaders() })
+        let response = await window.rapidezAPI('POST', 'wishlists/item', fetchData)
 
         let wishlist = wishlists.value.find(e => e.id == id)
         wishlist.items.push(response)
@@ -135,7 +131,7 @@ export const addItem = async function (id, productId) {
 
 export const removeItem = async function (id, itemId) {
     try {
-        await window.rapidezAPI('DELETE', 'wishlists/item/' + itemId, {}, { headers: fetchHeaders() })
+        await window.rapidezAPI('DELETE', 'wishlists/item/' + itemId, {})
 
         let wishlist = wishlists.value.find(e => e.id == id)
         let index = wishlist.items.findIndex(e => e.wishlist_item_id == itemId)
@@ -155,7 +151,7 @@ export const updateItem = async function (id, itemId, data) {
                 description: data.description,
                 qty: data.qty,
             }
-            let response = await window.rapidezAPI('PATCH', 'wishlists/item/' + itemId, fetchData, { headers: fetchHeaders() })
+            let response = await window.rapidezAPI('PATCH', 'wishlists/item/' + itemId, fetchData)
 
             let wishlist = wishlists.value.find(e => e.id == id)
             let item = wishlist.items.find(e => e.wishlist_item_id == itemId)
