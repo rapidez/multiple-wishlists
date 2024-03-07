@@ -5,14 +5,9 @@
 composer require rapidez/multiple-wishlists
 ```
 
-If you haven't published the Rapidez views yet, publish them with:
+It's not recommended to publish every view, rather you should overwrite only the files necessary. However, you can still publish all of the views with the following command:
 ```
 php artisan vendor:publish --provider="Rapidez\MultipleWishlist\MultipleWishlistServiceProvider" --tag=views
-```
-
-Then add the js dependency at the top of your app.js:
-```
-require('Vendor/rapidez/multiple-wishlists/resources/js/app.js');
 ```
 
 You also should probably add a new "wishlists" button to the Rapidez account menu, if you use it in your project (which is in `rapidez/account/resources/views/partials/menu.blade.php`)
