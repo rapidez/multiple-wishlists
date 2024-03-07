@@ -1,8 +1,8 @@
 <div class="flex flex-col">
     <template v-if="!editing">
         <x-rapidez-ct::title href="/account/wishlists">@{{ wishlist.title }}</x-rapidez-ct::title>
-        <div v-if="wishlist.shared" class="text-sm text-ct-primary flex flex-col">
-            <span>@lang('Sharing link'): <a :href="shareUrl" class="text-ct-inactive underline">@{{ shareUrl }}</a></span>
+        <div v-if="wishlist.shared" class="text-sm text-ct-inactive flex flex-col mt-2 gap-y-2">
+            <span>@lang('Sharing link'): <a :href="shareUrl" class="text-ct-primary underline">@{{ shareUrl }}</a></span>
             <template v-if="isSupported">
                 <x-rapidez-mw::button.accent v-on:click="share">@lang('Share')</x-rapidez-mw::button.accent>
             </template>
