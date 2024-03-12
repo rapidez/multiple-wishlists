@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/1.0.2...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/1.0.3...master)
+## [1.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/1.0.3) - 2024-03-12
+
+### Fixed
+
+- Fix console error (#21)
+
 ## [1.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/1.0.2) - 2024-02-29
 
 ### Fixed
