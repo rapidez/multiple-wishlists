@@ -56,8 +56,8 @@ export default {
                 return
             }
 
-            if(newVal < this.product.min_sale_qty) {
-                this.quantity = this.product.min_sale_qty
+            if(newVal < 0) {
+                this.quantity = 0
                 return
             }
 
