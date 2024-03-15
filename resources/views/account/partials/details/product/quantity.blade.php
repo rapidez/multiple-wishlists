@@ -2,7 +2,7 @@
     <div class="flex w-20 overflow-hidden rounded border">
         <button
             @disabled(!$editable)
-            v-bind:disabled="self.quantity - 1 < product.min_sale_qty"
+            v-bind:disabled="self.quantity <= 0"
             class="flex-1 bg-ct-inactive-100 transition hover:bg-opacity-80"
             v-on:click="self.quantity--"
         >-</button>
@@ -13,7 +13,7 @@
             {{ $attributes }}
             @disabled(!$editable)
             v-model="self.quantity"
-            v-bind:min="product.min_sale_qty"
+            min="0"
             v-bind:step="product.qty_increments"
         />
         <button
