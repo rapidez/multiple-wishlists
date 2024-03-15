@@ -94,6 +94,10 @@ export default {
         },
 
         async addToCart(item) {
+            if (item.qty <= 0) {
+                return
+            }
+            
             await this.magentoCart('post', 'items', {
                 cartItem: {
                     sku: item.product.sku,
