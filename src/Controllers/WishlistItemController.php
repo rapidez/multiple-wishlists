@@ -49,7 +49,7 @@ class WishlistItemController extends Controller
     {
         $validated = $request->validate([
             'description' => 'nullable|string|max:255',
-            'qty' => 'integer|min:1'
+            'qty' => 'integer|min:0'
         ]);
 
         $item->rapidezWishlist()->firstOrFail();
