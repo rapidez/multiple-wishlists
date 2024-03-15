@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.0.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.0.1...master)
+## [2.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.0.1) - 2024-03-15
+
+### Fixed
+
+- Allow a quantity of 0 on a wishlist item (#22)
+
 ## [2.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.0.0) - 2024-03-12
 
 ### Added
