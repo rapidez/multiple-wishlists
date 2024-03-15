@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+<div class="flex flex-col overflow-hidden">
     @include('rapidez-mw::partials.item.title')
     @include('rapidez-mw::partials.item.view')
 </div>

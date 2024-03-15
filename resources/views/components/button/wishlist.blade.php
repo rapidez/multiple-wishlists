@@ -1,7 +1,7 @@
 @props(['productId' => $product->entity_id ?? null])
 
 <toggler v-slot="{ isOpen, toggle, close }" v-cloak>
-    <wishlist v-slot="{ wishlists, toggleItem, findItem, addWishlist, isWishlisted }">
+    <wishlist v-slot="{ wishlists, toggleItem, findItem, addWishlist, isWishlisted, update }">
         <div v-on-click-away="close" {{ $attributes->class('w-full') }}>
             @include('rapidez-mw::partials.item.button')
             <div v-show="isOpen" v-cloak>
