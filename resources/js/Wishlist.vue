@@ -2,12 +2,14 @@
 import { useShare } from '@vueuse/core'
 import { wishlists, create, remove, update, addItem, removeItem } from './stores/useWishlists'
 import { refresh as refreshCart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
-import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
+import GetCart from 'Vendor/rapidez/core/resources/js/components/Cart/mixins/GetCart'
 
 import wishlistItem from './WishlistItem.vue'
 Vue.component('wishlist-item', wishlistItem)
 
 export default {
+    mixins: [GetCart],
+    
     props: {
         wishlistId: {
             type: Number,
@@ -101,7 +103,7 @@ export default {
             await this.magentoCart('post', 'items', {
                 cartItem: {
                     sku: item.product.sku,
-                    quote_id: cartMask.value,
+                    quote_id: await this.getMask(),
                     qty: item.qty,
                 }
             }).catch((error) => {
