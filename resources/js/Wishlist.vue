@@ -107,7 +107,7 @@ export default {
                     qty: item.qty,
                 }
             }).catch((error) => {
-                Notify(error.response.data.message, 'error', error.response.data?.parameters)
+                Notify(error.message, 'error')
             })
         },
 
