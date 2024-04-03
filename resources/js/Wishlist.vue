@@ -59,13 +59,7 @@ export default {
         },
 
         async fetchShared() {
-            let response = await axios({
-                method: 'GET',
-                url: window.url('/api/wishlists/shared/' + this.sharedId),
-                headers: { Store: window.config.store_code },
-            })
-
-            this.sharedWishlist = response.data
+            this.sharedWishlist = await window.rapidezAPI('GET', 'wishlists/shared/' + this.sharedId)
         },
 
         getWishlist(id) {
