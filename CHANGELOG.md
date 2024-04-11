@@ -1,6 +1,22 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.0.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.1.1...master)
+## [2.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.1.1) - 2024-04-11
+
+### Fixed
+- Fix wishlist overview when text is to long (https://github.com/rapidez/multiple-wishlists/pull/28)
+
+## [1.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/1.1.1) - 2024-04-11
+
+### Fixed
+- Fix wishlist overview when text is to long (https://github.com/rapidez/multiple-wishlists/pull/29)
+
+## [2.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.1.0) - 2024-03-15
+
+### Added
+
+- Inline editing (#23)
+
 ## [2.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.0.1) - 2024-03-15
 
 ### Fixed
