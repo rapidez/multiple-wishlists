@@ -96,6 +96,8 @@ export const update = async function (id, data) {
             wishlist.title = response.title
             wishlist.description = response.description
             wishlist.shared = response.shared
+
+            wishlist.updated_at = new Date().toISOString()
         }
 
         return true
@@ -120,6 +122,8 @@ export const addItem = async function (id, productId) {
         let wishlist = wishlists.value.find(e => e.id == id)
         wishlist.items.push(response)
 
+        wishlist.updated_at = new Date().toISOString()
+
         return true
     } catch (error) {
         console.log(error)
@@ -136,6 +140,8 @@ export const removeItem = async function (id, itemId) {
         let wishlist = wishlists.value.find(e => e.id == id)
         let index = wishlist.items.findIndex(e => e.wishlist_item_id == itemId)
         wishlist.items.splice(index, 1)
+
+        wishlist.updated_at = new Date().toISOString()
     } catch (error) {
         console.log(error)
         Notify(window.config.translations.errors.wrong, 'error')
@@ -157,6 +163,8 @@ export const updateItem = async function (id, itemId, data) {
             let item = wishlist.items.find(e => e.wishlist_item_id == itemId)
             item.description = response.description
             item.qty = response.qty
+
+            wishlist.updated_at = new Date().toISOString()
         }
 
         return true
