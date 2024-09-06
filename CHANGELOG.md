@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.2.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.2.1...master)
+## [2.2.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.2.1) - 2024-09-06
+
+### Fixed
+
+- Fix add-all-to-cart button (#32)
+
 ## [2.2.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.2.0) - 2024-08-23
 
 ### Changed
