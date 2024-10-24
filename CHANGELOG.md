@@ -1,6 +1,16 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.2.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.3.0...master)
+## [2.3.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.3.0) - 2024-10-24
+
+### Added
+
+- Rapidez v3 support (9273c70)
+
+### Fixed
+
+- Correct product image (#33)
+
 ## [2.2.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.2.1) - 2024-09-06
 
 ### Fixed
