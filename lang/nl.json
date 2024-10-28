@@ -1,0 +1,23 @@
+{
+    "Add all items to cart": "Voeg alle items toe aan winkelwagen",
+    "Back to wishlists": "Terug naar verlanglijstjes",
+    "Change name": "Naam wijzigen",
+    "Create new wishlist": "Nieuwe verlanglijst maken",
+    "Delete wishlist": "Verlanglijst verwijderen",
+    "Latest update: :date": "Laatste update: :date",
+    "My Wishlists": "Mijn verlanglijstjes",
+    "New order list": "Nieuwe bestellijst",
+    "New wishlist": "Nieuwe verlanglijst",
+    "Not in stock": "Niet op voorraad",
+    "Number of articles (:count)": "Aantal artikelen (:count)",
+    "Share": "Delen",
+    "Share this wishlist": "Deel deze verlanglijst",
+    "Sharing link": "Deelbare link",
+    "View": "Bekijken",
+    "You have no items in your wishlist": "Je hebt geen items in je verlanglijst",
+    "You must log in to add a product to your order list.": "Je moet inloggen om een product aan je bestellijst toe te voegen.",
+    "article": "artikel",
+    "articles": "artikelen",
+    "login": "inloggen",
+    "shared": "gedeeld"
+}
