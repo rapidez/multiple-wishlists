@@ -12,7 +12,8 @@ class MultipleWishlistServiceProvider extends ServiceProvider
         $this->bootRoutes()
              ->bootViews()
              ->bootMigrations()
-             ->publish();
+             ->publish()
+             ->bootTranslations();
     }
 
     public function bootRoutes(): static
@@ -42,6 +43,13 @@ class MultipleWishlistServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/rapidez')
         ], 'views');
+
+        return $this;
+    }
+
+    protected function bootTranslations(): self
+    {
+        $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
 
         return $this;
     }
