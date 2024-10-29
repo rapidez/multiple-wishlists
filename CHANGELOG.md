@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.3.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.4.0...master)
+## [2.4.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.4.0) - 2024-10-29
+
+### Added
+
+- Dutch translations (#34)
+
 ## [2.3.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.3.0) - 2024-10-24
 
 ### Added
