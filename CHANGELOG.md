@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.4.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.5.0...master)
+## [2.5.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.5.0) - 2024-11-05
+
+### Changed
+
+- Consistent translations (#37)
+
 ## [2.4.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.4.0) - 2024-10-29
 
 ### Added
