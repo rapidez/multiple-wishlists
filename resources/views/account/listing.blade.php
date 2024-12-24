@@ -10,7 +10,7 @@
             <div v-if="wishlists" class="space-y-0.5 my-5">
                 <div
                     v-for="(wishlist, index) in wishlists"
-                    class="bg-muted p-6 sm:px-9 sm:pt-6 sm:pb-9 rounded flex flex-col gap-3"
+                    class="bg p-6 sm:px-9 sm:pt-6 sm:pb-9 rounded flex flex-col gap-3"
                     :key="wishlist.id"
                 >
                     <div class="flex flex-col">

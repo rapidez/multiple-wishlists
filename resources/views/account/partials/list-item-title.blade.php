@@ -1,4 +1,4 @@
-<div class="flex items-center justfiy-between w-full font-medium text text-base mb-2.5 relative">
+<div class="flex items-center justfiy-between w-full font-medium text mb-2.5 relative">
     <div class="w-full flex items-center gap-2">
         <span>@{{ wishlist.title }}</span>
         @include('rapidez-mw::account.partials.shared-wishlist')

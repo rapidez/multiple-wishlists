@@ -3,7 +3,7 @@
         <button
             @disabled(!$editable)
             v-bind:disabled="self.quantity <= 0"
-            class="flex-1 bg-muted transition hover:bg-opacity-80"
+            class="flex-1 bg transition hover:bg-opacity-80"
             v-on:click="self.quantity--"
         >-</button>
         <input
@@ -18,7 +18,7 @@
         />
         <button
             @disabled(!$editable)
-            class="flex-1 bg-muted transition hover:bg-opacity-80"
+            class="flex-1 bg transition hover:bg-opacity-80"
             v-on:click="self.quantity++"
         >+</button>
     </div>
