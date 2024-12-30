@@ -31,7 +31,7 @@ The API uses mostly Laravel apiResource endpoints. All of the exposed endpoints 
 
 ## Colors
 When you install Rapidez, the colors are already configured in your `tailwind.config.js`. This ensures that your colors are consistently applied across all elements.
-Alternatively, if you are using this package standalone, you can copy these variables and customize them to your liking. Colors can be found in the [Rapidez docs](https://docs.rapidez.io/3.x/theming.html#colors).
+Colors can be found in the [Rapidez docs](https://docs.rapidez.io/3.x/theming.html#colors).
 
 ## Components
-In this package we use the [Rapidez blade-components](https://github.com/rapidez/blade-components). When you install Rapidez, the rapidez/blade-components package is already installed. If you are using this package standalone, you can install them by running `composer require rapidez/blade-components`.
+In this package we use the [Rapidez blade-components](https://github.com/rapidez/blade-components). When you install Rapidez, the rapidez/blade-components package is already installed.
