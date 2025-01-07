@@ -1,3 +1,3 @@
-<x-rapidez-mw::button.accent @click.prevent="addAllToCart" class="max-md:w-full">
+<x-rapidez::button.secondary @click.prevent="addAllToCart" class="max-md:w-full">
     @lang('Add all items to cart')
-</x-rapidez-mw::button.accent>
+</x-rapidez::button.secondary>

@@ -61,7 +61,7 @@
                                     </template>
                                 </tbody>
                             </table>
-                            <div class="flex rounded bg-ct-inactive-100 p-3 md:justify-end">
+                            <div class="flex rounded bg p-3 md:justify-end">
                                 @include('rapidez-mw::account.partials.details.addtocart')
                             </div>
                         </template>
