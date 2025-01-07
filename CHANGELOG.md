@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.5.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.0.0...master)
+## [3.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/3.0.0) - 2025-01-07
+
+### Changed
+
+- Implemented rapidez/blade-components and v3 colors (#39)
+
 ## [2.5.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.5.1) - 2024-11-29
 
 ### Fixed
