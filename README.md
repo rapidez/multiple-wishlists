@@ -28,10 +28,3 @@ The API uses mostly Laravel apiResource endpoints. All of the exposed endpoints 
 | POST /wishlists/item | <ul><li>wishlist_id(int)</li><li>product_id(int)</li><li>qty(int)</li></ul> | Adds a new item to the given wishlist |
 | PATCH /wishlists/item/{id} | <ul><li>description(str, max 255)</li><li>qty(int)</li></ul> | Updates the data of an item |
 | DELETE /wishlists/item/{id} | None | Deletes an item |
-
-## Colors
-When you install Rapidez, the colors are already configured in your `tailwind.config.js`. This ensures that your colors are consistently applied across all elements.
-Colors can be found in the [Rapidez docs](https://docs.rapidez.io/3.x/theming.html#colors).
-
-## Components
-In this package we use the [Rapidez blade-components](https://github.com/rapidez/blade-components). When you install Rapidez, the rapidez/blade-components package is already installed.
