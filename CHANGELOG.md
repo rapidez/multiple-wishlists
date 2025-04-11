@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.0.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.1.0...master)
+## [3.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.0) - 2025-04-10
+
+### Changed
+
+- Handle the Laravel requirement through the core requirement (9415e94)
+
 ## [3.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/3.0.0) - 2025-01-07
 
 ### Changed
