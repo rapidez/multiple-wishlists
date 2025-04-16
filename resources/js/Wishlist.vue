@@ -40,7 +40,7 @@ export default {
 
     methods: {
         isWishlisted(productId) {
-            return this.wishlists.some(e => this.findItem(e, productId))
+            return this.wishlists && this.wishlists.some(e => this.findItem(e, productId))
         },
 
         findItem(wishlist, productId) {
@@ -61,7 +61,7 @@ export default {
         },
 
         getWishlist(id) {
-            return this.wishlists.find(e => e.id == id);
+            return this.wishlists?.find(e => e.id == id);
         },
 
         addWishlist: create,
