@@ -1,6 +1,18 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.1.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.1.1...master)
+## [3.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.1) - 2025-04-17
+
+### Fixed
+
+- Fallbacks for wishlists not existing (#40)
+
+## [2.5.2](https://github.com/rapidez/multiple-wishlists/releases/tag/2.5.2) - 2025-04-17
+
+### Fixed
+
+- Fallbacks for wishlists not existing (#41)
+
 ## [3.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.0) - 2025-04-10
 
 ### Changed
