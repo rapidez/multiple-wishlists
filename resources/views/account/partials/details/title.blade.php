@@ -21,8 +21,8 @@
                         </x-rapidez::button.secondary>
                     </div>
                 </div>
-                <x-rapidez::textarea class="mt-2.5" label="" name="Description" v-model="editing.description"></x-rapidez::textarea>
-                <x-rapidez::input.checkbox class="mt-2.5" v-model="editing.shared">@lang('Share this wishlist')</x-rapidez::checkbox>
+                <x-rapidez::input.textarea class="mt-2.5" label="" name="Description" v-model="editing.description"></x-rapidez::input.textarea>
+                <x-rapidez::input.checkbox class="mt-2.5" v-model="editing.shared">@lang('Share this wishlist')</x-rapidez::input.checkbox>
             </form>
         </template>
     @endif
