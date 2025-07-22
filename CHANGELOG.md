@@ -1,6 +1,18 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.1.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/3.1.2...master)
+## [3.1.2](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.2) - 2025-07-18
+
+### Fixed
+
+- Fix tags (#42)
+
+## [4.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.0) - 2025-06-05
+
+### Added
+
+- Rapidez v4 support (9a216c0)
+
 ## [3.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.1) - 2025-04-17
 
 ### Fixed
