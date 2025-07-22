@@ -1,6 +1,18 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.1...master)
+## [4.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.1) - 2025-07-18
+
+### Fixed
+
+- Fix tags (#43)
+
+## [3.1.2](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.2) - 2025-07-18
+
+### Fixed
+
+- Fix tags (#42)
+
 ## [4.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.0) - 2025-06-05
 
 ### Added
