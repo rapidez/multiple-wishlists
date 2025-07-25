@@ -1,5 +1,5 @@
 <x-rapidez-mw::dropdown class="absolute right-0 top-6 w-60 flex flex-col p-4 sm:px-7 sm:py-6">
-    <x-rapidez-mw::button.link v-if="wishlist" v-bind:href="'{{ route('wishlist.show', '') }}/'+wishlist.id">
+    <x-rapidez-mw::button.link v-if="wishlist" v-bind:href="'{{ route('wishlist.listing') }}/'+wishlist.id">
         @lang('Edit')
         <x-heroicon-o-pencil-square class="size-5"/>
     </x-rapidez-mw::button.link>
