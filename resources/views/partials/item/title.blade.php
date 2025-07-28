@@ -7,7 +7,7 @@
 }">
     <div class="flex items-center" slot-scope="{ toggle, close, isOpen }">
         <template v-if="!isOpen">
-            <span class="text-primary truncate peer place-self-start -mt-0.5">
+            <span class="text truncate peer place-self-start -mt-0.5">
                 @{{ wishlist.title }}
             </span>
             <x-heroicon-s-pencil-square
@@ -16,9 +16,9 @@
             />
         </template>
         <template v-else>
-            <input
+            <x-rapidez::input
                 v-bind:ref="'editing_' + wishlist.id"
-                class="!font-[inherit] text-primary -mt-0.5 w-full !outline-none"
+                class="!font-[inherit] text -mt-0.5 w-full !outline-none"
                 v-model.lazy="wishlist.title"
                 v-on-click-away="close"
                 v-on:keyup.enter="close"
