@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.2...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.3...master)
+## [4.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.3) - 2025-07-29
+
+### Fixed
+
+- Use the Blade components input and text color fixes (#45)
+
 ## [4.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.2) - 2025-07-25
 
 ### Fixed
