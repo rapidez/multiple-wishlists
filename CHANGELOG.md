@@ -1,6 +1,13 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.3...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.0.4...master)
+## [4.0.4](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.4) - 2025-08-13
+
+### Fixed
+
+- Empty route parameter fix (#46)
+- Wishlist summary v4 compatibility (#47)
+
 ## [4.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.3) - 2025-07-29
 
 ### Fixed
