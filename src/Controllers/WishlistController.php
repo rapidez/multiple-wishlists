@@ -26,6 +26,8 @@ class WishlistController extends Controller
 
     public function shared($token): mixed
     {
+        abort_unless(config('rapidez.multiple-wishlists.allow-sharing'), 404);
+        
         return RapidezWishlist::with('items.product')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
     }
 

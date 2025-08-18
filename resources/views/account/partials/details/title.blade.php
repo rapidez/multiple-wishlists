@@ -1,12 +1,14 @@
 <div class="flex flex-col">
     <template v-if="!editing">
         <x-rapidez-ct::title href="/account/wishlists">@{{ wishlist.title }}</x-rapidez-ct::title>
-        <div v-if="wishlist.shared" class="text-sm text-muted flex flex-col mt-2 gap-y-2">
-            <span>@lang('Sharing link'): <a :href="shareUrl" class="text-primary underline">@{{ shareUrl }}</a></span>
-            <template v-if="isSupported">
-                <x-rapidez::button.secondary v-on:click="share">@lang('Share')</x-rapidez::button.secondary>
-            </template>
-        </div>
+        @if (config('rapidez.multiple-wishlists.allow-sharing'))
+            <div v-if="wishlist.shared" class="text-sm text-muted flex flex-col mt-2 gap-y-2">
+                <span>@lang('Sharing link'): <a :href="shareUrl" class="text-primary underline">@{{ shareUrl }}</a></span>
+                <template v-if="isSupported">
+                    <x-rapidez::button.secondary v-on:click="share">@lang('Share')</x-rapidez::button.secondary>
+                </template>
+            </div>
+        @endif
     </template>
 
     @if ($editable)
@@ -22,7 +24,10 @@
                     </div>
                 </div>
                 <x-rapidez::input.textarea label="" name="Description" v-model="editing.description"></x-rapidez::input.textarea>
-                <x-rapidez::input.checkbox v-model="editing.shared">@lang('Share this wishlist')</x-rapidez::input.checkbox>
+
+                @if (config('rapidez.multiple-wishlists.allow-sharing'))
+                    <x-rapidez::input.checkbox v-model="editing.shared">@lang('Share this wishlist')</x-rapidez::input.checkbox>
+                @endif
             </form>
         </template>
     @endif
