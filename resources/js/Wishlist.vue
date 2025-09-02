@@ -40,7 +40,7 @@ export default {
 
     methods: {
         isWishlisted(productId) {
-            return this.wishlists && this.wishlists.some(e => this.findItem(e, productId))
+            return this.wishlists && Array.isArray(this.wishlists) && this.wishlists.some(e => this.findItem(e, productId))
         },
 
         findItem(wishlist, productId) {
