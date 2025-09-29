@@ -1,1 +1,1 @@
-<x-rapidez::button.outline href="{{ route('wishlist.listing') }}" class="mt-5">@lang('Back to wishlists')</x-rapidez::button.outline>
+<x-rapidez::button.outline href="{{ route('wishlist.listing') }}" class="mt-5 w-fit">@lang('Back to wishlists')</x-rapidez::button.outline>
