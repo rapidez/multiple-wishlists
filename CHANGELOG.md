@@ -1,6 +1,13 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.1.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.1.1...master)
+## [4.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.1.1) - 2025-09-30
+
+### Fixed
+
+- Wishlists array check fix (#50)
+- Listen to the logged-out event instead of logout (#49)
+
 ## [4.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.1.0) - 2025-08-19
 
 ### Added
