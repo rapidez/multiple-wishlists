@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div v-else class="my-4 text p-2.5 bg-muted">
-                @lang('You have no items in your wishlist')
+                @lang('You have no wishlists yet.')
             </div>
             @include('rapidez-mw::account.partials.buttons')
         </div>

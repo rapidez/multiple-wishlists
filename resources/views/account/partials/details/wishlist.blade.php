@@ -8,9 +8,9 @@
         </div>
     </div>
     @include('rapidez-mw::account.partials.details.description')
-    <x-rapidez::productlist field="entity_id" value="wishlist.items.map(e => e.product_id)">
-        <x-slot:items>
-            <template v-if="wishlist?.items?.length">
+    <template v-if="wishlist?.items?.length">
+        <x-rapidez::productlist field="entity_id" value="wishlist.items.map(e => e.product_id)">
+            <x-slot:items>
                 <table v-if="items">
                     <x-rapidez-mw::table.header>
                         <th class="max-md:text-start">
@@ -55,10 +55,10 @@
                 <div class="flex rounded bg p-3 md:justify-end">
                     @include('rapidez-mw::account.partials.details.addtocart')
                 </div>
-            </template>
-            <template v-else>
-                @lang('You have no items in your wishlist')
-            </template>
-        </x-slot:items>
-    </x-rapidez::productlist>
+            </x-slot:items>
+        </x-rapidez::productlist>
+    </template>
+    <template v-else>
+        @lang('You have no items in your wishlist')
+    </template>
 </div>
