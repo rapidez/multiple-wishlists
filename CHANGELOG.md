@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.1.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.2.0...master)
+## [4.2.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.0) - 2025-10-17
+
+### Added
+
+- Empty/no wishlists messages and translations (#51)
+
 ## [4.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.1.1) - 2025-09-30
 
 ### Fixed
