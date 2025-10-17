@@ -1,6 +1,8 @@
 {
     "Add all items to cart": "Voeg alle items toe aan winkelwagen",
     "Amount": "Bedrag",
+    "article": "artikel",
+    "articles": "artikelen",
     "Back to dashboard": "Terug naar dashboard",
     "Back to wishlists": "Terug naar overzicht",
     "Change name": "Naam wijzigen",
@@ -8,6 +10,7 @@
     "Delete wishlist": "Wensenlijst verwijderen",
     "Edit": "Bewerken",
     "Latest update: :date": "Laatste update: :date",
+    "login": "inloggen",
     "My Wishlists": "Mijn wensenlijsten",
     "New order list": "Nieuwe wensenlijst",
     "New wishlist": "Nieuwe wensenlijst",
@@ -15,12 +18,10 @@
     "Number of articles (:count)": "Aantal artikelen (:count)",
     "Share": "Delen",
     "Share this wishlist": "Deel deze wensenlijst",
+    "shared": "gedeeld",
     "Sharing link": "Deelbare link",
     "View": "Bekijken",
     "You have no items in your wishlist": "Je hebt geen items in je wensenlijst",
-    "You must log in to add a product to your order list.": "Je moet inloggen om een product aan je wensenlijst toe te voegen.",
-    "article": "artikel",
-    "articles": "artikelen",
-    "login": "inloggen",
-    "shared": "gedeeld"
+    "You have no wishlists yet.": "Je hebt nog geen wenslijst",
+    "You must log in to add a product to your order list.": "Je moet inloggen om een product aan je wensenlijst toe te voegen."
 }
