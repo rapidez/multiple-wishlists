@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.2.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.2.1...master)
+## [4.2.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.1) - 2025-10-28
+
+### Fixed
+
+- aria-label on buttons (#52)
+
 ## [4.2.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.0) - 2025-10-17
 
 ### Added
