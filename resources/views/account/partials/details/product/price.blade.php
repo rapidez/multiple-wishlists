@@ -1,3 +1,3 @@
 <td>
-    <span class="text-sm font-bold text">@{{ product.price | price }}</span>
+    <span class="text-sm font-bold text">@{{ window.price(wishlistItem.product.price) }}</span>
 </td>
