@@ -1,6 +1,6 @@
 <div class="flex flex-col">
     <template v-if="!editing">
-        <a href="/account/wishlists">@{{ wishlist.title }}</a>
+        <x-rapidez-ct::title href="/account/wishlists">@{{ wishlist.title }}</x-rapidez-ct::title>
         @if (config('rapidez.multiple-wishlists.allow-sharing'))
             <div v-if="wishlist.shared" class="text-sm text-muted flex flex-col mt-2 gap-y-2">
                 <span>@lang('Sharing link'): <a :href="shareUrl" class="text-primary underline">@{{ shareUrl }}</a></span>
@@ -15,7 +15,7 @@
         <template v-else>
             <form class="flex flex-col gap-2" v-on:submit.stop="save">
                 <div class="flex items-center">
-                    <a href="/account/wishlists"></a>
+                    <x-rapidez-ct::title href="/account/wishlists"></x-rapidez-ct::title>
                     <div class="relative border rounded">
                         <x-rapidez::input class="w-80 border-0 pr-12" name="Edit title" type="text" v-model="editing.title" />
                         <x-rapidez::button.secondary class="!absolute -translate-y-1/2 top-1/2 right-1 flex items-center justify-center !p-0 size-9 min-h-0">
