@@ -1,7 +1,6 @@
 <script>
 import { useShare } from '@vueuse/core'
 import { wishlists, create, remove, update, addItem, removeItem } from './stores/useWishlists'
-import { refresh as refreshCart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
 import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
 
 import wishlistItem from './WishlistItem.vue'
@@ -75,32 +74,32 @@ export default {
 
         async addAllToCart() {
             this.adding = true
-            await Promise.allSettled(
-                this.wishlist.items.map(
-                    (item) => this.addToCart(item)
+
+            try {
+                let response = await window.magentoGraphQL(
+                    `mutation ($cartId: String!, $cartItems: [CartItemInput!]!) {
+                        addProductsToCart(cartId: $cartId, cartItems: $cartItems)
+                        { cart { ...cart } user_errors { code message } }
+                    }
+                    ` + config.fragments.cart,
+                    {
+                        cartId: cartMask.value,
+                        cartItems: this.wishlist.items.map((item) => ({
+                            sku: item.product.sku,
+                            quantity: item.qty,
+                        })),
+                    },
                 )
-            )
 
-            await refreshCart()
-            this.added = true
-            this.adding = false
-            setTimeout(() => this.added = false, 3000)
-        },
+                await this.updateCart({}, response)
 
-        async addToCart(item) {
-            if (item.qty <= 0) {
-                return
-            }
-            
-            await this.magentoCart('post', 'items', {
-                cartItem: {
-                    sku: item.product.sku,
-                    quote_id: cartMask.value,
-                    qty: item.qty,
-                }
-            }).catch((error) => {
+                this.added = true
+                setTimeout(() => this.added = false, 3000)
+            } catch(error) {
                 Notify(error.message, 'error')
-            })
+            }
+
+            this.adding = false
         },
 
         toggleEdit() {
