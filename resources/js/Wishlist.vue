@@ -2,11 +2,12 @@
 import { useShare } from '@vueuse/core'
 import { wishlists, create, remove, update, addItem, removeItem } from './stores/useWishlists'
 import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
-
 import wishlistItem from './WishlistItem.vue'
-Vue.component('wishlist-item', wishlistItem)
 
 export default {
+    components: [
+        wishlistItem
+    ],
     props: {
         wishlistId: {
             type: Number,
@@ -15,14 +16,14 @@ export default {
         sharedId: String,
     },
 
-    mounted() {
-        if(this.sharedId) {
-            this.fetchShared()
-        }
+    emits: ['update:modelValue'],
 
+    setup() {
         const { share, isSupported } = useShare()
-        this.shareFn = share
-        this.isSupported = isSupported
+        return {
+            shareFn: share,
+            isSupported,
+        }
     },
 
     data() {
@@ -31,14 +32,13 @@ export default {
             added: false,
             editing: null,
             sharedWishlist: null,
-
-            shareFn: null,
-            isSupported: null,
+            wishlists: wishlists
         }
     },
 
     methods: {
         isWishlisted(productId) {
+            console.log(wishlists, this.wishlists)
             return this.wishlists && Array.isArray(this.wishlists) && this.wishlists.some(e => this.findItem(e, productId))
         },
 
@@ -137,10 +137,6 @@ export default {
     },
 
     computed: {
-        wishlists() {
-            return wishlists.value
-        },
-
         wishlist() {
             if (this.wishlistId) {
                 return this.getWishlist(this.wishlistId)
@@ -161,7 +157,12 @@ export default {
     },
 
     render() {
-        return this.$scopedSlots.default(this)
+        return this.$slots.default(this)
+    },
+    mounted() {
+        if(this.sharedId) {
+            this.fetchShared()
+        }
     },
 }
 </script>

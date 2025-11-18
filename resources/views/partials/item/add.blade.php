@@ -4,5 +4,5 @@
 </div>
 <button @click="toggleItem(wishlist, {{ $productId }})">
     <x-heroicon-s-heart v-if="findItem(wishlist, {{ $productId }})" class="size-5 text hover:opacity-80" />
-    <x-heroicon-o-heart v-else class="size-5 text-muted hover:text-primary" />
+    <x-heroicon-o-heart v-else="" class="size-5 text-muted hover:text-primary" />
 </button>
