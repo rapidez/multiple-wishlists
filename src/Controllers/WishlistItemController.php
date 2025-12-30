@@ -5,9 +5,9 @@ namespace Rapidez\MultipleWishlist\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Rapidez\Core\Models\Product;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\WishlistItem;
@@ -18,7 +18,7 @@ class WishlistItemController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'wishlist_id' => 'required|integer|exclude',
@@ -30,7 +30,7 @@ class WishlistItemController extends Controller
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->findOrFail($request->wishlist_id);
 
         // Make sure the product exists
-        $product = Product::withoutGlobalScopes()->findOrFail($request->product_id);
+        abort_unless(config('rapidez.models.product')::where('entity_id', $request->product_id)->exists(), 404);
 
         // Add item to wishlist item table, and add reference entry to rapidez wishlist item table
         $item = $wishlist->items()->create([
@@ -42,7 +42,10 @@ class WishlistItemController extends Controller
             'wishlist_item_id' => $item->wishlist_item_id
         ]);
 
-        return $item->load('product');
+        return response()->json([
+            ...$item->toArray(),
+            'product' => $item->product()->toBase()->first(),
+        ]);
     }
 
     public function update(Request $request, WishlistItem $item)

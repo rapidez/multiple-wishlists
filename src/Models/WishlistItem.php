@@ -3,7 +3,6 @@
 namespace Rapidez\MultipleWishlist\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class WishlistItem extends Model
 {
@@ -49,6 +48,6 @@ class WishlistItem extends Model
 
     public function product()
     {
-        return $this->belongsTo(ProductEntity::class, 'product_id');
+        return $this->belongsTo(config('rapidez.models.product'), 'product_id');
     }
 }
