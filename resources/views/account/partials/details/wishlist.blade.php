@@ -52,6 +52,7 @@
                         </template>
                     </tbody>
                 </table>
+                @include('rapidez::listing.partials.pagination')
                 <div class="flex rounded bg p-3 md:justify-end">
                     @include('rapidez-mw::account.partials.details.addtocart')
                 </div>
