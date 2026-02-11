@@ -1,6 +1,23 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/4.2.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.0...master)
+## [5.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.0) - 2026-02-11
+
+### Added
+
+- Rapidez v5 support (#56)
+- Vue 3 upgrade + fixes (#53)
+
+## [4.3.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.3.0) - 2026-01-06
+
+### Added
+
+- Pagination (#55)
+
+### Changed
+
+- Use GraphQL to add all to cart (#54)
+
 ## [4.2.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.1) - 2025-10-28
 
 ### Fixed
