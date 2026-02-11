@@ -1,10 +1,11 @@
 import { useLocalStorage } from "@vueuse/core"
-import { computed, watch } from "vue"
+import { computed, ref, watch } from "vue"
 import { token } from 'Vendor/rapidez/core/resources/js/stores/useUser'
+import { on } from 'Vendor/rapidez/core/resources/js/polyfills/emit'
 
 export const wishlistStorage = useLocalStorage('wishlists', [])
-let isRefreshing = false
-let hasFetched = false
+const isRefreshing = ref(false)
+const hasFetched = ref(false)
 
 export const refresh = async function () {
     if (!token.value) {
@@ -12,41 +13,38 @@ export const refresh = async function () {
         return true
     }
 
-    if (isRefreshing) {
+    if (isRefreshing.value) {
         console.debug('Refresh canceled, request already in progress...')
         return
     }
 
-    isRefreshing = true
+    isRefreshing.value = true
     try {
         wishlistStorage.value = (await window.rapidezAPI('GET', 'wishlists', {})) || []
-        hasFetched = true
+        hasFetched.value = true
     } catch (error) {
         console.error(error)
         Notify(window.config.translations.errors.wrong, 'error')
     }
-    isRefreshing = false
+    isRefreshing.value = false
 }
 
 export const clear = async function () {
     wishlistStorage.value = []
-    hasFetched = false
+    hasFetched.value = false
 }
 
-export const wishlists = computed({
-    get() {
-        if (!hasFetched && wishlistStorage.value.length === 0) {
-            refresh()
-        }
-
-        return wishlistStorage.value
-    },
-    set(value) {
-        wishlistStorage.value = value
+export const wishlists = computed(() => {
+    if (!hasFetched.value && wishlistStorage.value.length === 0) {
+        refresh()
     }
+
+    return wishlistStorage.value
 })
 
 watch(token, refresh)
+
+on('logged-out', clear, {autoremove: false});
 
 export default () => wishlists
 
@@ -108,8 +106,6 @@ export const update = async function (id, data) {
         return false
     }
 }
-
-
 
 export const addItem = async function (id, productId) {
     try {

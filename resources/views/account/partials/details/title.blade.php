@@ -6,7 +6,7 @@
                 <span>@lang('Sharing link'): <a :href="shareUrl" class="text-primary underline">@{{ shareUrl }}</a></span>
                 <template v-if="isSupported">
                     <x-rapidez::button.secondary v-on:click="share">@lang('Share')</x-rapidez::button.secondary>
-                </template>
+                </template> 
             </div>
         @endif
     </template>

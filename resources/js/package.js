@@ -1,7 +1,8 @@
-import { clear } from './stores/useWishlists';
+import './stores/useWishlists';
+import { defineAsyncComponent } from 'vue'
 
-Vue.component('wishlist', () => import('./Wishlist.vue'))
-
-document.addEventListener('vue:loaded', (event) => {
-    window.app.$on('logged-out', clear);
+document.addEventListener('vue:loaded', function (event) {
+    const vue = event.detail.vue
+    vue.component('wishlist', defineAsyncComponent(() => import('./Wishlist.vue')))
+    vue.component('wishlist-item', defineAsyncComponent(() => import('./WishlistItem.vue')))
 })
