@@ -42,10 +42,7 @@ class WishlistItemController extends Controller
             'wishlist_item_id' => $item->wishlist_item_id
         ]);
 
-        return response()->json([
-            ...$item->toArray(),
-            'product' => $item->product()->toBase()->first(),
-        ]);
+        return $item->load('product');
     }
 
     public function update(Request $request, WishlistItem $item)

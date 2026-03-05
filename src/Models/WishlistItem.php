@@ -48,6 +48,7 @@ class WishlistItem extends Model
 
     public function product()
     {
-        return $this->belongsTo(config('rapidez.models.product'), 'product_id');
+        return $this->belongsTo(config('rapidez.models.product'), 'product_id')
+            ->withOnly([]);
     }
 }
