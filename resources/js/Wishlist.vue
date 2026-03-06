@@ -85,7 +85,7 @@ export default {
                     {
                         cartId: cartMask.value,
                         cartItems: this.wishlist.items.map((item) => ({
-                            sku: item.product.sku,
+                            sku: item.sku,
                             quantity: item.qty,
                         })),
                     },

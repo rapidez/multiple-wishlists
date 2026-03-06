@@ -2,6 +2,8 @@
 
 namespace Rapidez\MultipleWishlist\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class WishlistItem extends Model
@@ -24,6 +26,10 @@ class WishlistItem extends Model
             $item->store_id = config('rapidez.store');
             $item->save();
         });
+
+        static::addGlobalScope('withProductScope', function (Builder $query) {
+            $query->join('catalog_product_entity', 'catalog_product_entity.entity_id', $query->qualifyColumn('product_id'));
+        });
     }
 
     public function magentoWishlist()
@@ -44,11 +50,5 @@ class WishlistItem extends Model
     public function rapidezItem()
     {
         return $this->hasOne(RapidezWishlistItem::class, 'wishlist_item_id');
-    }
-
-    public function product()
-    {
-        return $this->belongsTo(config('rapidez.models.product'), 'product_id')
-            ->withOnly([]);
     }
 }
