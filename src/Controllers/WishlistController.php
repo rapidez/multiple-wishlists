@@ -21,14 +21,14 @@ class WishlistController extends Controller
 
     public function index(): Collection
     {
-        return RapidezWishlist::with('items.product')->get();
+        return RapidezWishlist::with('items')->get();
     }
 
     public function shared($token): mixed
     {
         abort_unless(config('rapidez.multiple-wishlists.allow-sharing'), 404);
-        
-        return RapidezWishlist::with('items.product')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
+
+        return RapidezWishlist::with('items')->withoutGlobalScope(CustomerScope::class)->isShared($token)->firstOrFail();
     }
 
     public function store(Request $request): mixed
