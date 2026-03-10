@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.1...master)
+## [5.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.1) - 2026-03-10
+
+### Fixed
+
+- Remove dependency on product model (#57)
+
 ## [5.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.0) - 2026-02-11
 
 ### Added
