@@ -16,9 +16,9 @@
             <form class="flex flex-col gap-2" v-on:submit.stop="save">
                 <div class="flex items-center">
                     <x-rapidez-ct::title href="/account/wishlists"></x-rapidez-ct::title>
-                    <div class="relative border rounded">
+                    <div class="relative border rounded-sm">
                         <x-rapidez::input class="w-80 border-0 pr-12" name="Edit title" type="text" v-model="editing.title" />
-                        <x-rapidez::button.secondary class="!absolute -translate-y-1/2 top-1/2 right-1 flex items-center justify-center !p-0 size-9 min-h-0">
+                        <x-rapidez::button.secondary class="absolute! -translate-y-1/2 top-1/2 right-1 flex items-center justify-center p-0! size-9 min-h-0">
                             <x-heroicon-o-pencil-square class="size-4 text-white" />
                         </x-rapidez::button.secondary>
                     </div>

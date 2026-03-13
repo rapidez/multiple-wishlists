@@ -24,12 +24,12 @@
                                 </template>
                             </p>
                         </th>
-                        <th class="!pl-0 max-md:hidden"></th>
+                        <th class="pl-0! max-md:hidden"></th>
                         @if($editable)
-                            <th class="!pl-0 max-md:hidden"></th>
+                            <th class="pl-0! max-md:hidden"></th>
                         @endif
-                        <th class="!text-center max-md:hidden">@lang('Amount')</th>
-                        <th class="!pl-0 max-md:hidden"></th>
+                        <th class="text-center! max-md:hidden">@lang('Amount')</th>
+                        <th class="pl-0! max-md:hidden"></th>
                     </x-rapidez-mw::table.header>
                     <tbody>
                         <template v-for="(item, index) in wishlist.items">
@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
                 @include('rapidez::listing.partials.pagination')
-                <div class="flex rounded bg p-3 md:justify-end">
+                <div class="flex rounded-sm bg p-3 md:justify-end">
                     @include('rapidez-mw::account.partials.details.addtocart')
                 </div>
             </x-slot:items>
