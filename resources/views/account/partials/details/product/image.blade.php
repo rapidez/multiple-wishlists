@@ -1,5 +1,5 @@
 <template v-if="wishlistItem.product.thumbnail">
-    <td class="w-20 !px-0 max-md:w-16">
+    <td class="w-20 px-0! max-md:w-16">
         <img
             v-if="wishlistItem.product.thumbnail"
             class="object-contain h-16 w-20 shrink-0"
