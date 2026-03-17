@@ -18,7 +18,7 @@
         <template v-else>
             <x-rapidez::input
                 v-bind:ref="'editing_' + wishlist.id"
-                class="!font-[inherit] text -mt-0.5 w-full !outline-none"
+                class="font-[inherit]! text -mt-0.5 w-full outline-hidden!"
                 v-model.lazy="wishlist.title"
                 v-on-click-away="close"
                 v-on:keyup.enter="close"
