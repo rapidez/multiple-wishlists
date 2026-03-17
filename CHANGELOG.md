@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.1...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.2...master)
+## [5.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.2) - 2026-03-17
+
+### Fixed
+
+- Tailwind 4 update (#58)
+
 ## [5.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.1) - 2026-03-10
 
 ### Fixed
