@@ -5,7 +5,6 @@ namespace Rapidez\MultipleWishlist\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
@@ -18,7 +17,7 @@ class WishlistItemController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
-    public function store(Request $request): JsonResponse
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'wishlist_id' => 'required|integer|exclude',

@@ -4,15 +4,15 @@
     } else {
         update(wishlist.id, wishlist)
     }
-}">
-    <div class="flex items-center" slot-scope="{ toggle, close, isOpen }">
+}" v-slot="{ toggle, close, isOpen }">
+    <div class="flex items-center">
         <template v-if="!isOpen">
             <span class="text truncate peer place-self-start -mt-0.5">
                 @{{ wishlist.title }}
             </span>
             <x-heroicon-s-pencil-square
                 class="pl-2 w-6 h-4 cursor-pointer shrink-0 opacity-0 hover:opacity-100 peer-hover:opacity-50 transition-opacity"
-                v-on:click="toggle"
+                v-on:click.stop="toggle"
             />
         </template>
         <template v-else>
