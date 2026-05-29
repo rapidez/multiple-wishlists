@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.2...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.3...master)
+## [5.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.3) - 2026-05-29
+
+### Fixed
+
+- Rapidez v5 fixes (#59)
+
 ## [5.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.2) - 2026-03-17
 
 ### Fixed
