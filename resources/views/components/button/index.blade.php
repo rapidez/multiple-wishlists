@@ -12,7 +12,7 @@
             <x-heroicon-o-arrow-path class="h-5 w-5 animate-spin" />
         </div>
     @endif
-    <span class="contents" @attributes([':class' => $loader ? '{ "invisible": $root.loading }' : false])>
+    <span class="contents" @attributes([':class' => $loader ? '{ "invisible": loading.value }' : false])>
         {{ $slot }}
     </span>
 </x-rapidez::tag>
