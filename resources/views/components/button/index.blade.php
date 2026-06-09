@@ -5,14 +5,14 @@
         'relative inline-block self-start rounded-sm py-4 px-6 text-center text-sm transition cursor-pointer',
         'disabled:cursor-not-allowed disabled:opacity-70',
     ]) }}
-    v-bind:disabled="$root.loading"
+    v-bind:disabled="loading.value"
 >
     @if($loader)
-        <div v-if="$root.loading" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2" v-cloak>
+        <div v-if="loading.value" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2" v-cloak>
             <x-heroicon-o-arrow-path class="h-5 w-5 animate-spin" />
         </div>
     @endif
-    <span class="contents" @attributes([':class' => $loader ? '{ "invisible": $root.loading }' : false])>
+    <span class="contents" @attributes([':class' => $loader ? '{ "invisible": loading.value }' : false])>
         {{ $slot }}
     </span>
 </x-rapidez::tag>
