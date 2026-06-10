@@ -3,7 +3,6 @@
 namespace Rapidez\MultipleWishlist\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class WishlistItem extends Model
@@ -14,7 +13,7 @@ class WishlistItem extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'qty' => 'integer'
+        'qty' => 'integer',
     ];
 
     public const CREATED_AT = 'added_at';
@@ -28,7 +27,8 @@ class WishlistItem extends Model
         });
 
         static::addGlobalScope('withProductScope', function (Builder $query) {
-            $query->join('catalog_product_entity', 'catalog_product_entity.entity_id', $query->qualifyColumn('product_id'));
+            $query->join('catalog_product_entity', 'catalog_product_entity.entity_id', $query->qualifyColumn('product_id'))
+                ->addSelect(['*', 'catalog_product_entity.sku']);
         });
     }
 
@@ -42,8 +42,10 @@ class WishlistItem extends Model
         return $this->hasOneThrough(
             RapidezWishlist::class,
             RapidezWishlistItem::class,
-            'wishlist_item_id', 'id',
-            null, 'wishlist_id'
+            'wishlist_item_id',
+            'id',
+            null,
+            'wishlist_id'
         );
     }
 
