@@ -1,7 +1,7 @@
 <script>
 import { useShare } from '@vueuse/core'
 import { wishlists, create, remove, update, addItem, removeItem } from './stores/useWishlists'
-import { mask as cartMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
+import { mask as cartMask, refreshMask } from 'Vendor/rapidez/core/resources/js/stores/useMask'
 import wishlistItem from './WishlistItem.vue'
 
 export default {
@@ -74,6 +74,10 @@ export default {
 
         async addAllToCart() {
             this.adding = true
+
+            if (!cartMask.value) {
+                await refreshMask()
+            }
 
             try {
                 let response = await window.magentoGraphQL(
