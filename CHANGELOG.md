@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.4...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.5...master)
+## [5.0.5](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.5) - 2026-06-16
+
+### Fixed
+
+- Refresh mask on empty mask (#62)
+
 ## [5.0.4](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.4) - 2026-06-16
 
 ### Fixed
