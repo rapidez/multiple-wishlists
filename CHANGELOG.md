@@ -1,6 +1,13 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.3...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.4...master)
+## [5.0.4](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.4) - 2026-06-16
+
+### Fixed
+
+- Use loading.value (#60)
+- Bugfixes (#61)
+
 ## [5.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.3) - 2026-05-29
 
 ### Fixed
