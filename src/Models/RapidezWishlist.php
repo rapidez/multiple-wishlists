@@ -4,7 +4,6 @@ namespace Rapidez\MultipleWishlist\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Rapidez\Core\Models\Store;
 use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
 class RapidezWishlist extends Model
@@ -27,7 +26,7 @@ class RapidezWishlist extends Model
             }
         });
 
-        static::addGlobalScope(new CustomerScope);
+        static::addGlobalScope(new CustomerScope());
     }
 
     public function items()
@@ -35,8 +34,10 @@ class RapidezWishlist extends Model
         return $this->hasManyThrough(
             WishlistItem::class,
             RapidezWishlistItem::class,
-            'wishlist_id', 'wishlist_item_id',
-            'id', 'wishlist_item_id',
+            'wishlist_id',
+            'wishlist_item_id',
+            'id',
+            'wishlist_item_id',
         );
     }
 

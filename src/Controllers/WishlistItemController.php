@@ -21,7 +21,7 @@ class WishlistItemController extends Controller
     {
         $validated = $request->validate([
             'wishlist_id' => 'required|integer|exclude',
-            'product_id' => 'required|integer'
+            'product_id' => 'required|integer',
         ]);
 
         // Make sure the wishlists exist
@@ -38,17 +38,18 @@ class WishlistItemController extends Controller
             'qty' => 1,
         ]);
         $rapidezWishlist->rapidezItems()->create([
-            'wishlist_item_id' => $item->wishlist_item_id
+            'wishlist_item_id' => $item->wishlist_item_id,
         ]);
 
-        return $item;
+        // Re-query for the item so the joined product is added to the data
+        return WishlistItem::find($item->wishlist_item_id);
     }
 
     public function update(Request $request, WishlistItem $item)
     {
         $validated = $request->validate([
             'description' => 'nullable|string|max:255',
-            'qty' => 'integer|min:0'
+            'qty' => 'integer|min:0',
         ]);
 
         $item->rapidezWishlist()->firstOrFail();

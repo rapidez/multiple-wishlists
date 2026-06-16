@@ -8,8 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Arr;
-use Rapidez\MultipleWishlist\Models\Wishlist;
 use Rapidez\MultipleWishlist\Models\RapidezWishlist;
 use Rapidez\MultipleWishlist\Scopes\CustomerScope;
 
@@ -35,12 +33,12 @@ class WishlistController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'shared' => 'boolean'
+            'shared' => 'boolean',
         ]);
 
         $rapidezWishlist = new RapidezWishlist([
             'customer_id' => auth()->user()->entity_id,
-            ...$validated
+            ...$validated,
         ]);
         $rapidezWishlist->save();
 
@@ -52,7 +50,7 @@ class WishlistController extends Controller
         $validated = $request->validate([
             'title' => 'max:255',
             'description' => 'max:65535',
-            'shared' => 'boolean'
+            'shared' => 'boolean',
         ]);
 
         $wishlist->update($validated);
