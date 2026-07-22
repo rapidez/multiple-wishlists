@@ -38,7 +38,6 @@ export default {
 
     methods: {
         isWishlisted(productId) {
-            console.log(wishlists, this.wishlists)
             return this.wishlists && Array.isArray(this.wishlists) && this.wishlists.some(e => this.findItem(e, productId))
         },
 
