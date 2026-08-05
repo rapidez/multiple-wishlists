@@ -1,6 +1,128 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.5.2...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.6.0...master)
+## [2.6.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.6.0) - 2026-08-05
+
+### Added
+
+- Laravel 12 support (#64)
+
+## [5.0.5](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.5) - 2026-06-16
+
+### Fixed
+
+- Refresh mask on empty mask (#62)
+
+## [5.0.4](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.4) - 2026-06-16
+
+### Fixed
+
+- Use loading.value (#60)
+- Bugfixes (#61)
+
+## [5.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.3) - 2026-05-29
+
+### Fixed
+
+- Rapidez v5 fixes (#59)
+
+## [5.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.2) - 2026-03-17
+
+### Fixed
+
+- Tailwind 4 update (#58)
+
+## [5.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.1) - 2026-03-10
+
+### Fixed
+
+- Remove dependency on product model (#57)
+
+## [5.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.0) - 2026-02-11
+
+### Added
+
+- Rapidez v5 support (#56)
+- Vue 3 upgrade + fixes (#53)
+
+## [4.3.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.3.0) - 2026-01-06
+
+### Added
+
+- Pagination (#55)
+
+### Changed
+
+- Use GraphQL to add all to cart (#54)
+
+## [4.2.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.1) - 2025-10-28
+
+### Fixed
+
+- aria-label on buttons (#52)
+
+## [4.2.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.2.0) - 2025-10-17
+
+### Added
+
+- Empty/no wishlists messages and translations (#51)
+
+## [4.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.1.1) - 2025-09-30
+
+### Fixed
+
+- Wishlists array check fix (#50)
+- Listen to the logged-out event instead of logout (#49)
+
+## [4.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.1.0) - 2025-08-19
+
+### Added
+
+- Enable/disable share option config (#48)
+
+## [4.0.4](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.4) - 2025-08-13
+
+### Fixed
+
+- Empty route parameter fix (#46)
+- Wishlist summary v4 compatibility (#47)
+
+## [4.0.3](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.3) - 2025-07-29
+
+### Fixed
+
+- Use the Blade components input and text color fixes (#45)
+
+## [4.0.2](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.2) - 2025-07-25
+
+### Fixed
+
+- Stop using undefined behavior (#44)
+
+## [4.0.1](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.1) - 2025-07-18
+
+### Fixed
+
+- Fix tags (#43)
+
+## [3.1.2](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.2) - 2025-07-18
+
+### Fixed
+
+- Fix tags (#42)
+
+## [4.0.0](https://github.com/rapidez/multiple-wishlists/releases/tag/4.0.0) - 2025-06-05
+
+### Added
+
+- Rapidez v4 support (9a216c0)
+
+## [3.1.1](https://github.com/rapidez/multiple-wishlists/releases/tag/3.1.1) - 2025-04-17
+
+### Fixed
+
+- Fallbacks for wishlists not existing (#40)
+
 ## [2.5.2](https://github.com/rapidez/multiple-wishlists/releases/tag/2.5.2) - 2025-04-17
 
 ### Fixed
