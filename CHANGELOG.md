@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.6.0...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/2.6.1...master)
+## [2.6.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.6.1) - 2026-08-26
+
+### Fixed
+
+- Empty route parameter fix (#65)
+
 ## [2.6.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.6.0) - 2026-08-05
 
 ### Added
