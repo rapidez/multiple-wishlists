@@ -1,4 +1,4 @@
-<a class="flex items-center gap-x-7 bg-white rounded border pb-5 pt-4 px-7 hover:opacity-75" :href="'{{ route('wishlist.show', '') }}/'+wishlist.id">
+<a class="flex items-center gap-x-7 bg-white rounded border pb-5 pt-4 px-7 hover:opacity-75" :href="'{{ route('wishlist.listing') }}/'+wishlist.id">
     <x-heroicon-s-heart class="w-5 h-5 text-ct-wishlist mt-1.5" />
     <div class="flex flex-col">
         <div class="w-full text-base font-medium text-ct-neutral">@lang('Number of articles (:count)', ['count' => '@{{ wishlist.items.length }}'])</div>
