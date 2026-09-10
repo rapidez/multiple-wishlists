@@ -1,6 +1,26 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.5...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.6...master)
+## [5.0.6](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.6) - 2026-09-10
+
+### Fixed
+
+- Remove console log (#63)
+
+
+
+## [2.6.1](https://github.com/rapidez/multiple-wishlists/releases/tag/2.6.1) - 2026-08-26
+
+### Fixed
+
+- Empty route parameter fix (#65)
+
+## [2.6.0](https://github.com/rapidez/multiple-wishlists/releases/tag/2.6.0) - 2026-08-05
+
+### Added
+
+- Laravel 12 support (#64)
+
 ## [5.0.5](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.5) - 2026-06-16
 
 ### Fixed
