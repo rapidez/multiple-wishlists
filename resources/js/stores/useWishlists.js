@@ -107,9 +107,10 @@ export const update = async function (id, data) {
     }
 }
 
-export const addItem = async function (id, productId) {
+export const addItem = async function (id, productId, data = {}) {
     try {
         let fetchData = {
+            ...data,
             wishlist_id: id,
             product_id: productId,
         }
@@ -120,7 +121,7 @@ export const addItem = async function (id, productId) {
 
         wishlist.updated_at = new Date().toISOString()
 
-        return true
+        return response
     } catch (error) {
         console.log(error)
         Notify(window.config.translations.errors.wrong, 'error')
