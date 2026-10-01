@@ -21,8 +21,7 @@ class WishlistItemController extends Controller
     {
         $validated = $request->validate([
             'wishlist_id' => 'required|integer|exclude',
-            'product_id' => 'nullable|required_without:sku|integer',
-            'sku' => 'nullable|required_without:product_id|string',
+            'product_id' => 'required|integer',
             'description' => 'nullable|string|max:255',
             'qty' => 'integer|min:0',
         ]);
@@ -32,14 +31,11 @@ class WishlistItemController extends Controller
         $rapidezWishlist = RapidezWishlist::with('rapidezItems')->findOrFail($request->wishlist_id);
 
         // Make sure the product exists
-        $productId = $request->product_id
-            ? config('rapidez.models.product')::where('entity_id', $request->product_id)->value('entity_id')
-            : config('rapidez.models.product')::where('sku', $request->sku)->value('entity_id');
-        abort_unless($productId, 404);
+        abort_unless(config('rapidez.models.product')::where('entity_id', $request->product_id)->exists(), 404);
 
         // Add item to wishlist item table, and add reference entry to rapidez wishlist item table
         $item = $wishlist->items()->create([
-            'product_id' => $productId,
+            'product_id' => $validated['product_id'],
             'description' => $validated['description'] ?? null,
             'qty' => $validated['qty'] ?? 1,
         ]);
