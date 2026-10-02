@@ -36,7 +36,7 @@
                             <wishlist-item :data="items" :item="item" :wishlist-id="wishlist.id" v-slot="wishlistItem">
                                 <div
                                     class="border-b flex flex-wrap items-center gap-y-5 py-5 *:px-2 last:border-none md:align-middle md:table-row md:*:py-5 md:*:px-1.5"
-                                    v-bind:class="{'opacity-70': wishlistItem?.product && !wishlistItem?.product?.in_stock }"
+                                    v-bind:class="{'opacity-70': wishlistItem?.product && !wishlistItem?.product?.stock?.is_in_stock }"
                                     v-bind:key="item.id"
                                 >
                                     <template v-if="wishlistItem?.product">
