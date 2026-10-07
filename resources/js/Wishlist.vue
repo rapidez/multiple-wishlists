@@ -63,6 +63,7 @@ export default {
         },
 
         addWishlist: create,
+        addItem: addItem,
         async removeWishlist(id, redirect = false) {
             await remove(id)
             if (redirect) {
