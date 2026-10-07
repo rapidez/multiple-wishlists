@@ -1,6 +1,18 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.0.6...master)
+[Unreleased changes](https://github.com/rapidez/multiple-wishlists/compare/5.1.0...master)
+## [5.1.0](https://github.com/rapidez/multiple-wishlists/releases/tag/5.1.0) - 2026-10-07
+
+### Added
+
+- Allow extra data on items (#66)
+
+### Fixed
+
+- Update stock check condition in wishlist item (#67)
+
+
+
 ## [5.0.6](https://github.com/rapidez/multiple-wishlists/releases/tag/5.0.6) - 2026-09-10
 
 ### Fixed
