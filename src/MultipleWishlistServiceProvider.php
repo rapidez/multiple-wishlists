@@ -52,7 +52,7 @@ class MultipleWishlistServiceProvider extends ServiceProvider
     public function publish(): static
     {
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/rapidez'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/rapidez-mw'),
         ], 'views');
 
         $this->publishes([
