@@ -7,7 +7,7 @@
     </div>
     <toggler v-slot="{ isOpen, toggle, close }" v-cloak>
         <div v-on-click-away="close">
-            <button @click="toggle">
+            <button @click="toggle()">
                 <x-heroicon-o-ellipsis-horizontal class="size-5" />
             </button>
             <div v-show="isOpen" v-cloak>
